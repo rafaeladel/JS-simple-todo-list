@@ -1,0 +1,6 @@
+.dynamicButton {
+	color : blue;
+	cursor : pointer ;
+	text-decoration : underline;
+	margin-left : 5px;
+}
