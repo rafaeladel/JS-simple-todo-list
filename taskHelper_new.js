@@ -53,13 +53,15 @@ function Subtask(){
             deleteSub.innerHTML = "Delete";		
             undoSub.innerHTML = "Undo";
 
-
+                
         cInput.type = "checkbox";				
         var cLabel = document.createElement("label");
         cLabel.htmlFor = cInput.id ;
-
+        
+        
         cLabel.appendChild(document.createTextNode(cInput.value));
         subtaskArr.push(cLabel.innerHTML);
+        undoSub.style.display = "none";
         cSubmit.style.display = "none";
         cContainer.appendChildren(cLabel, undoSub, deleteSub);
 
@@ -72,6 +74,7 @@ function Subtask(){
         cInput.addEventListener("click" , function(evt){
             cInput.disabled = true;
             cLabel.style.textDecoration = "line-through";
+            undoSub.style.display = "inline";
             cContainer.parentNode.lastChild.firstChild.focus();
         });
 
@@ -84,6 +87,7 @@ function Subtask(){
             mainTask.childNodes[0].checked = false;
             mainTask.childNodes[1].style.textDecoration = "none";
             mainTask.lastChild.style.display = "none";
+            undoSub.style.display = "none";
             cContainer.parentNode.lastChild.firstChild.focus();	
         });
 
