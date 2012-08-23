@@ -105,6 +105,9 @@ window.onload = function(){
                         if(divideBtn.style.display == "none" && aWholeTask.childNodes.length == 1){
                                 divideBtn.style.display = "inline";
                         }
+                        for(k = 1 ; k < evt.target.parentNode.parentNode.childNodes.length - 1 ; k++){
+                               evt.target.parentNode.parentNode.childNodes[k].childNodes[3].style.display = "none";
+                        }
                 }								
 
                 if(evt.target.id == "divide"){	
