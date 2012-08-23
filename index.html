@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>To-do list</title>
-		<link rel="stylesheet" href="style.css"/>
-		<script type="text/javascript" src="nodeHelper.js"></script>
-		<script type="text/javascript" src="taskHelper_new.js"></script>
-		<script type="text/javascript" src="script.js"></script>
-	</head>
+    <head>
+            <title>To-do list</title>
+            <link rel="stylesheet" href="style.css"/>		
+    </head>
 	
-	<body>
-		<div id="controlers">
-			<input type="text" id="taskInput"/>
-			<input type="button" id="submitMain" value="Add"/>
-			<input type="button" id="reset" value="Reset"/>
-		</div>
-		
-		<div id="todoTask">
-			
-		</div>
-	</body>
+    <body>
+        <div id="mainWrapper">
+            <div id="taskInput">
+                <div id="controllers">
+                    <input type="text" name="mainTask" id="mainTask">
+                    <input type="button" name="addMain" id="addMain" value="Add">
+                    <input type="button" name="resetMain" id="resetMain" value="Reset">
+                </div>       
+            </div>
+            <div id="tasks">
+                    <div id="newtask">
+                        
+                    </div>
+            </div>
+        </div>
+    </body>
 </html>
