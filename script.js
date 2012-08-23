@@ -106,7 +106,7 @@ window.onload = function(){
                                 divideBtn.style.display = "inline";
                         }
                         for(k = 1 ; k < evt.target.parentNode.parentNode.childNodes.length - 1 ; k++){
-                               evt.target.parentNode.parentNode.childNodes[k].childNodes[3].style.display = "none";
+                               evt.target.parentNode.parentNode.childNodes[k].childNodes[3].style.display = "inline";
                         }
                 }								
 
