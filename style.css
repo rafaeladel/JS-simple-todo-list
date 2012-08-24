@@ -41,11 +41,11 @@ body {
 
 #taskInput {
     /*background:#004B55; the value to be set*/
-    background: red;
+    background: #008E9F;
     width:606px;
     height:43px;    
     padding: 22px;    
-    box-shadow: 0px 3px 4px -3px black;
+    box-shadow: 0px 5px 4px -3px black;
     position: absolute;    
     z-index : 0;
     top:0px;
@@ -70,7 +70,7 @@ body {
 /*Those buttons need a little push upward - solution is to be found
   (fixed: turned out to be caused by the font size*/
 #controllers button{ 
-    background: #ED303C;
+    background: #8F2932;
     font-size : 20px;    
     font-weight: bold;    
     text-shadow: 1px 1px 5px black;
