@@ -45,7 +45,8 @@ body {
     padding-left: 10px;
 }
 
-#controllers input[type=button]{
+/*Those buttons need a little push upward - solution is to be found*/
+#controllers input[type=button]{ 
     background: #ED303C;
     font-size : 16px;
     font-weight: bold;    
