@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>To-do list</title>
+            <link rel="stylesheet" href="style.css"/>	
+            <script type="text/javascript" src="../jquery-1.8.0.min.js"></script>
+            <script type="text/javascript" src="js/script.js"></script>
+    </head>
+	
+    <body>
+        <div id="mainWrapper">
+            <div id="InputPanel">
+                <div id="controllers">
+                    <input type="text" name="mainTask" id="mainTaskInput">
+                    <button id="addMain">Add</button>
+                    <button id="resetMain">Reset</button>
+                </div>       
+            </div>
+            <div id="wholetasksWrapper">
+               <div class="wholeTask">
+                    <div class="mainTask">
+                        <!-- All ID names are to be changed later on -->
+                        <input type="checkbox" name="task1" id="task1">
+                        <label for="task1">This is task1</label>
+                        <button id="undo">Undo</button>
+                        <button id="divide">Divide</button>
+                        <button id="delete">Delete</button>
+                    </div>            
+                    <div class="subTask">
+                        <input type="checkbox" name="task1" id="task1">
+                        <label for="task1">This is task1</label>
+                        <button id="undo">Undo</button>
+                        <button id="divide">Divide</button>
+                        <button id="delete">Delete</button>
+                    </div>
+                    <div class="subTask">
+                        <input type="checkbox" name="task1" id="task1">
+                        <label for="task1">This is task1</label>
+                        <button id="undo">Undo</button>
+                        <button id="divide">Divide</button>
+                        <button id="delete">Delete</button>
+                    </div>                
+                </div>
+                
+            </div>            
+        </div>
+    </body>
+</html>
