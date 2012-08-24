@@ -48,7 +48,7 @@ body {
     box-shadow: 0px 3px 4px -3px black;
     position: absolute;    
     z-index : 0;
-    top:-80px;
+    top:0px;
 }
 
 #controllers {       
@@ -67,7 +67,8 @@ body {
     padding-left: 10px;    
 }
 
-/*Those buttons need a little push upward - solution is to be found*/
+/*Those buttons need a little push upward - solution is to be found
+  (fixed: turned out to be caused by the font size*/
 #controllers button{ 
     background: #ED303C;
     font-size : 20px;    
