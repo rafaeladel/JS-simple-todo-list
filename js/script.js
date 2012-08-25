@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
     var mainTaskPanel = $("#InputPanel"),
         mtCounter = 0;
     mainTaskPanel.delay(400).animate({top:-80}, 500);
@@ -41,5 +41,11 @@ $(function(){
             $(this).css({top:-80}).show(300);
         })        
     })
+    
+})*/
+
+$(function(){   
+    
+    $("#colorField").miniColors();
     
 })

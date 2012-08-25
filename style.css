@@ -32,18 +32,37 @@ body {
     background: #343838;    
 }
 
-#controlPanel {
+#controlPanel{
     float:left;
 }
 
+#controlPanel > div {
+   background: #008E9F; 
+   box-shadow: 0px 0px 7px 1px #00202C;   
+   margin-bottom : 13px;
+   border-radius: 0 5px 5px 0;
+}
+
+#controlPanel label{
+    margin: 5px 5px 0 5px;
+    color : #F9F2E7;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+#controlPanel select{    
+    border : 1px solid darkslategrey;
+    width:100px;
+    font-size : 15px;
+    font-family : Molengo-Regular-webfont;    
+}
+
+
 #poster {
-    background :#008E9F;
     width : 175px;
     height : 52px;
     margin-top: 15px;
-    margin-bottom: 13px;
     padding: 10px;
-    box-shadow: 0px 0px 7px 1px #00202C;    
 }
 
 #poster h1{
@@ -53,17 +72,18 @@ body {
     font-family : Komika_display-webfont;
 }
 
-#MTControllers {
-    background: #008E9F;
+/*-------------------------------------*/
+/*---- Begninning of MTControllers-----*/
+/*-------------------------------------*/
+
+#MTControllers , #taskOptions, #taskInfo {
     width:460px;    
-    box-shadow: 0px 0px 7px 1px #00202C;  
     padding : 15px;
-    margin-bottom : 13px;
     overflow:auto;
+    font-family : Molengo-Regular-webfont;
 }
 
 #MTControllers input{
-    font-family : Molengo-Regular-webfont;    
     font-size:16px; 
     width: 448px;
     height: 40px;
@@ -72,15 +92,6 @@ body {
     box-shadow: 0px 4px 8px -3px black;    
     padding-left: 10px;        
     margin-bottom: 19px;
-}
-
-#MTControllers label{    
-    margin: 5px 5px 0 5px;
-    color : #F9F2E7;
-    font-family : Molengo-Regular-webfont;    
-    font-weight: bold;
-    text-shadow: 1px 1px 2px black;
-
 }
 
 #MTControllers button {
@@ -108,18 +119,67 @@ body {
     cursor : default;
 }
 
-#taskOptions {
-    background: #008E9F;
-    width:490px;    
-    box-shadow: 0px 0px 7px 1px #00202C;   
-    margin-bottom : 13px;
+div.utilButtons{
+    display:inline;
+}
+/*-------------------------------------*/
+/*---- End of MTControllers-----*/
+/*-------------------------------------*/
+
+/*-------------------------------------*/
+/*---- Beginning of task options-------*/
+/*-------------------------------------*/
+
+#taskOptions > div {
+    margin-bottom: 10px;
 }
 
-#taskInfo {
-    background: #008E9F;
-    width:490px;    
-    box-shadow: 0px 0px 7px 1px #00202C;  
+div.selectedTask {
+   display:inline-block;
+   background : #8ED6DF !important;
+   padding:4px;
+   color :darkslategrey;
+   margin-right: 4px;
+   margin-bottom : 5px;
+   border-radius: 5px;
+   box-shadow: inset 1px 1px 2px black !important;
+   cursor :pointer;
 }
+
+#taskOptions fieldset{
+    padding:5px;
+    color:white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#taskOptions legend{
+    margin-left : 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+#descriptionArea label{
+    float: left;
+}
+
+#taskOptions textarea{    
+    border:none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px -3px black;    
+    width:342px;
+    height: 100px;
+    font-family : Molengo-Regular-webfont;    
+    font-size : 15px;
+    padding:3px;
+}
+
+#taskOptions colorField{
+    display:inline;
+}
+
+/*-------------------------------------*/
+/*---- Begninning of tasks area -------*/
+/*-------------------------------------*/
 
 #tasksWrapper {
     background: #008E9F;
@@ -141,7 +201,7 @@ body {
     box-shadow: inset 2px 2px 1px 0px #005142;
 }
 
-.wholeTask button {
+.wholeTask button {    
     float:right;
     margin-right: 8px; 
     border-radius: 5px;
@@ -213,3 +273,9 @@ button.subCheck{
     color:#FFF4F1;
     width:60px;
 }
+
+/*-------------------------------------*/
+/*---- End of tasks area---------------*/
+/*-------------------------------------*/
+
+

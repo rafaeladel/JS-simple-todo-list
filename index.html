@@ -2,7 +2,11 @@
 <html>
     <head>
         <title>CHECK!</title>
-        <link rel="stylesheet" href="style.css">        
+        <link rel="stylesheet" href="style.css">    
+        <link rel="stylesheet" href="miniColors/jquery.miniColors.css">
+        <script type="text/javascript" src="../jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="miniColors/jquery.miniColors.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
         <div id="controlPanel">
@@ -18,7 +22,37 @@
                 <button id="resetMain">Reset</button>
                 <button id="addMain">Add</button>                
             </div>
-            <div id="taskOptions">taskOptions</div>
+            <div id="taskOptions">
+                
+                <fieldset id="selectionArea">
+                    <legend>
+                        Selected task(s):
+                    </legend>
+                    <div class="selectedTask">
+                      this is task 1
+                    </div>                    
+                </fieldset>
+                
+                <div id="priorityArea">
+                    <label>Priority:</label>
+                    <select name="priority">                    
+                        <option value="2">Urgent</option>
+                        <option value="1" selected>Normal</option>
+                        <option value="0">Low</option>
+                    </select>
+                </div>
+                
+                 <div id="colorPickerArea">
+                    <label>Color:</label>
+                    <input type="hidden" id="colorField">
+                </div>
+                
+                <div id="descriptionArea">
+                    <label>Description:</label>
+                    <textarea id="taskDescription" placeholder="Add desciption for the task.. "></textarea>
+                </div>
+             
+            </div>
             <div id="taskInfo">taskInfo</div>
         </div>
         
@@ -27,7 +61,7 @@
                     <div class="mainTask">
                         <!-- All ID names are to be changed later on -->
                         <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
+                        <label for="task1">This is task1</label>                        
                         <button class="mainCheck">CHECK!</button>
                         <button id="undo" class="inactiveMain">Undo</button>
                         <button id="divide">Divide</button>
