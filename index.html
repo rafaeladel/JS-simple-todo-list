@@ -9,104 +9,102 @@
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
-        <div id="controlPanel">
-            <div id="poster"><h1>CHECK!</h1></div>
-            <div id="MTControllers">
-                <input type="text" name="mainTask" id="mainTaskInput" placeholder="Enter a new task">
-                <label>Priority</label>
-                <select name="priority">                    
-                    <option value="2">Urgent</option>
-                    <option value="1" selected>Normal</option>
-                    <option value="0">Low</option>
-                </select>
-                <button id="resetMain">Reset</button>
-                <button id="addMain">Add</button>                
-            </div>
-            <div id="taskOptions">
-                
-                <fieldset id="selectionArea">
-                    <legend>
-                        Selected task(s):
-                    </legend>
-                    <div class="selectedTask">
-                      this is task 1
-                    </div>                    
-                </fieldset>
-                
-                <div id="priorityArea">
-                    <label>Priority:</label>
+        <div id="ALLwrapper">
+            <div id="controlPanel">
+                <div id="poster"><h1>CHECK!</h1></div>
+                <div id="MTControllers">
+                    <input type="text" name="mainTask" id="mainTaskInput" placeholder="Enter a new task">
+                    <label>Category:</label>
+                    <input type="text" name="mainCategory" id="mainCatInput" placeholder="Enter a new category">
+                    <label>Priority</label>
                     <select name="priority">                    
                         <option value="2">Urgent</option>
                         <option value="1" selected>Normal</option>
                         <option value="0">Low</option>
                     </select>
+                    <div class="mainBtnWrapper">
+                        <button id="addMain">Add</button>                
+                        <button id="resetMain">Reset</button>
+                    </div>
                 </div>
-                
-                 <div id="colorPickerArea">
-                    <label>Color:</label>
-                    <input type="hidden" id="colorField">
+                <div id="taskOptions">
+
+                    <fieldset id="selectionArea">
+                        <legend>
+                            Selected task(s):
+                        </legend>
+                        <div class="selectedTask">
+                          this is task 1
+                        </div>                    
+                    </fieldset>
+
+                    <div id="priorityArea">
+                        <label>Priority:</label>
+                        <select name="priority">                    
+                            <option value="2">Urgent</option>
+                            <option value="1" selected>Normal</option>
+                            <option value="0">Low</option>
+                        </select>
+                    </div>
+
+                     <div id="colorPickerArea">
+                        <label>Color:</label>
+                        <input type="hidden" id="colorField">
+                    </div>
+
+                    <div id="descriptionArea">
+                        <label>Description:</label>
+                        <textarea id="taskDescription" placeholder="Add desciption for the task.. "></textarea>
+                    </div>
+
+                    <div class="mainBtnWrapper">                
+                        <button id="discardButton">Discard</button>
+                        <button id="saveButton">Save</button>
+                    </div>
+
                 </div>
-                
-                <div id="descriptionArea">
-                    <label>Description:</label>
-                    <textarea id="taskDescription" placeholder="Add desciption for the task.. "></textarea>
-                </div>
-             
+                <div id="taskInfo">taskInfo</div>
             </div>
-            <div id="taskInfo">taskInfo</div>
-        </div>
-        
-        <div id="tasksWrapper">
-            <div class="wholeTask">
-                    <div class="mainTask">
-                        <!-- All ID names are to be changed later on -->
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>                        
-                        <button class="mainCheck">CHECK!</button>
-                        <button id="undo" class="inactiveMain">Undo</button>
-                        <button id="divide">Divide</button>
-                        <button id="delete">Delete</button>
-                    </div>            
-                    <div class="subTask">
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
-                        <button class="subCheck">CHECK!</button>
-                        <button id="undo" class="inactiveSub">Undo</button>
-                        <button id="delete">Delete</button>
+
+            <div id="tasksWrapper">
+                <div class="wholeTask">
+                        <div class="mainTask">
+                            <!-- All ID names are to be changed later on -->
+                            <input type="checkbox" name="task1" id="task1">
+                            <label for="task1">This is task1</label>
+                            <div class="mainButtons">                            
+                                <button id="undo" class="inactiveMain">Undo</button>
+                                <button id="divide">Divide</button>
+                                <button id="edit">Edit</button>
+                                <button id="delete">Delete</button>
+                                <button class="mainCheck">CHECK!</button>
+                            </div>
+                        </div>            
+                        <div class="subTask">
+                            <input type="checkbox" name="task1" id="task1">
+                            <label for="task1">This is task1</label>
+                            <div class="subButtons">
+
+                                <button id="undo" class="inactiveSub">Undo</button>
+                                <button id="edit">Edit</button>
+                                <button id="delete">Delete</button>
+                                <button class="subCheck">CHECK!</button>
+                            </div>
+                        </div>
+                        <div class="subTask">
+                            <input type="checkbox" name="task1" id="task1">
+                            <label for="task1">This is task1</label>
+                            <div class="subButtons">
+
+                                <button id="undo">Undo</button>
+                                <button id="edit">Edit</button>
+                                <button id="delete">Delete</button>
+                                <button class="subCheck">CHECK!</button>
+                            </div>
+                        </div>                
                     </div>
-                    <div class="subTask">
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
-                        <button class="subCheck">CHECK!</button>
-                        <button id="undo">Undo</button>
-                        <button id="delete">Delete</button>
-                    </div>                
-                </div>
-            <div class="wholeTask">
-                    <div class="mainTask">
-                        <!-- All ID names are to be changed later on -->
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
-                        <button class="mainCheck">CHECK!</button>
-                        <button id="undo">Undo</button>
-                        <button id="divide">Divide</button>
-                        <button id="delete">Delete</button>
-                    </div>            
-                    <div class="subTask">
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
-                        <button class="subCheck">CHECK!</button>
-                        <button id="undo">Undo</button>
-                        <button id="delete">Delete</button>
-                    </div>
-                    <div class="subTask">
-                        <input type="checkbox" name="task1" id="task1">
-                        <label for="task1">This is task1</label>
-                        <button class="subCheck">CHECK!</button>
-                        <button id="undo">Undo</button>
-                        <button id="delete">Delete</button>
-                    </div>                
-                </div>
+
+            </div>
         </div>
     </body>
 </html>

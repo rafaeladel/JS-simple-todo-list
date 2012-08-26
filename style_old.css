@@ -1,0 +1,404 @@
+@font-face {
+    font-family: Molengo-Regular-webfont;
+    src: url('fonts/Molengo-Regular-webfont.ttf'),
+         url('fonts/Molengo-Regular-webfont.eot');
+}
+
+@font-face {
+    font-family:UbuntuTitling-Bold-webfont;
+    src: url('fonts/UbuntuTitling-Bold-webfont.ttf'),
+         url('fonts/UbuntuTitling-Bold-webfont.eot');
+}
+
+@font-face {
+    font-family:Komika_display-webfont;
+    src: url('fonts/Komika_display-webfont.ttf'),
+         url('fonts/Komika_display-webfont.eot');
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height :100%; /*did this to get my wrapper fully vertically streched*/    
+}
+
+body {    
+    width :100%;
+    height: 100%; /*That causes the page to have scrolls*/
+    background: #343838;    
+}
+
+#ALLwrapper {
+    width: 1024px;
+    margin: auto;
+    background: grey;
+}
+
+/*-------------------------------------*/
+/*---- Begninning of Poster -----------*/
+/*-------------------------------------*/
+
+#poster {
+    display: inline-block;
+    width : 175px;
+    height : 52px;
+    margin-top: 15px;
+    padding: 10px;
+    background: #008E9F; 
+    box-shadow: 0px 0px 7px 1px #00202C;   
+    margin-bottom : 13px;
+    border-radius: 0 5px 5px 0;
+}
+
+#poster h1{
+    font-size: 42px;
+    color :white;
+    text-shadow: 0px -2px 1px darkslategray;
+    font-family : Komika_display-webfont;
+}
+
+/*-------------------------------------*/
+/*---- Begninning of MTControllers-----*/
+/*-------------------------------------*/
+
+#MTControllers {
+    display: inline-block;
+    background: #008E9F; 
+    box-shadow: 0px 0px 7px 1px #00202C;   
+    margin-bottom : 13px;
+    border-radius: 0 5px 5px 0;
+    display: inline-block;
+    width:460px;    
+    padding : 15px;
+    overflow:auto;
+    font-family : Molengo-Regular-webfont;
+}
+
+#MTControllers label {
+    margin: 5px 5px 0 5px;
+    color : #F9F2E7;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+#MTControllers select{
+    border : 1px solid darkslategrey;
+    width:100px;
+    font-size : 15px;
+    font-family : Molengo-Regular-webfont;    
+}
+
+#MTControllers button {
+    background: #8F2932;
+    font-size : 20px;    
+    font-weight: bold;    
+    text-shadow: 1px 1px 5px black;
+    color : #F9F2E7;
+    width : 85px;
+    height:40px;
+    border-radius: 5px;
+    margin : 0px 4px 0px 2px ;    
+    border: none;
+    box-shadow: 0px 4px 8px -3px black;
+    font-family:UbuntuTitling-Bold-webfont;
+    cursor:pointer;
+}
+
+#MTControllers button.inactiveInput {
+    background: #9E8B8B;
+    box-shadow: inset 2px 2px 2px #6E5C5C;
+    color : #5B5B5B;
+    text-shadow: 0px -1px 1px lightgrey;
+    cursor : default;
+}
+
+
+#MTControllers input:first-child{
+    display: inline;
+    font-size:16px; 
+    width: 448px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px -3px black;    
+    padding-left: 10px;            
+}
+
+
+
+#MTControllers input:nth-of-type(2){
+    font-size:14px; 
+    width: 184px;
+    height: 30px;
+    border : none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px -3px black;    
+    padding-left: 10px;
+}
+
+/*-------------------------------------*/
+/*---- Beginning of task options-------*/
+/*-------------------------------------*/
+
+
+#taskOptions {
+     display: none;
+    background: #008E9F; 
+    box-shadow: 0px 0px 7px 1px #00202C;   
+    margin-bottom : 13px;
+    border-radius: 0 5px 5px 0;
+}
+
+#taskOptions label{
+    margin: 5px 5px 0 5px;
+    color : #F9F2E7;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+#taskOptions select{
+    border : 1px solid darkslategrey;
+    width:100px;
+    font-size : 15px;
+    font-family : Molengo-Regular-webfont;    
+}
+
+#taskOptions button {
+    background: #8F2932;
+    font-size : 20px;    
+    font-weight: bold;    
+    text-shadow: 1px 1px 5px black;
+    color : #F9F2E7;
+    width : 85px;
+    height:40px;
+    border-radius: 5px;
+    margin : 0px 4px 0px 2px ;    
+    border: none;
+    box-shadow: 0px 4px 8px -3px black;
+    font-family:UbuntuTitling-Bold-webfont;
+    cursor:pointer;
+}
+
+#taskOptions button.inactiveInput {
+    background: #9E8B8B;
+    box-shadow: inset 2px 2px 2px #6E5C5C;
+    color : #5B5B5B;
+    text-shadow: 0px -1px 1px lightgrey;
+    cursor : default;
+}
+
+
+#priorityArea , #colorPickerArea{
+    display: inline-block;
+    margin-right: 30px;
+}
+
+div.selectedTask {
+   display:inline-block;
+   background : #8ED6DF !important;
+   padding:4px;
+   color :darkslategrey;
+   margin-right: 4px;
+   margin-bottom : 5px;
+   border-radius: 5px;
+   box-shadow: inset 1px 1px 2px black !important;
+   cursor :pointer;
+}
+
+#taskOptions fieldset{
+    padding:5px;
+    color:white;
+    border-radius: 5px;    
+}
+
+#taskOptions legend{
+    margin-left : 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+#descriptionArea label{
+    vertical-align: top;
+}
+
+#descriptionArea textarea{ 
+    border:none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px -3px black;    
+    width:342px;
+    height: 100px;
+    font-family : Molengo-Regular-webfont;    
+    font-size : 15px;
+    padding:3px;
+    resize:none;
+}
+
+#taskOptions colorField{
+    display:inline;
+}
+
+/*-------------------------------------*/
+/*---- Begninning of tasks info -------*/
+/*-------------------------------------*/
+
+#taskInfo {
+    display: none;
+}
+
+#taskInfo {
+    background: #008E9F; 
+   box-shadow: 0px 0px 7px 1px #00202C;   
+   margin-bottom : 13px;
+   border-radius: 0 5px 5px 0;
+}
+
+#taskInfo label{
+    margin: 5px 5px 0 5px;
+    color : #F9F2E7;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+#taskInfo select{
+    border : 1px solid darkslategrey;
+    width:100px;
+    font-size : 15px;
+    font-family : Molengo-Regular-webfont;    
+}
+
+#taskInfo button {
+    background: #8F2932;
+    font-size : 20px;    
+    font-weight: bold;    
+    text-shadow: 1px 1px 5px black;
+    color : #F9F2E7;
+    width : 85px;
+    height:40px;
+    border-radius: 5px;
+    margin : 0px 4px 0px 2px ;    
+    border: none;
+    box-shadow: 0px 4px 8px -3px black;
+    font-family:UbuntuTitling-Bold-webfont;
+    cursor:pointer;
+}
+
+#taskInfo button.inactiveInput {
+    background: #9E8B8B;
+    box-shadow: inset 2px 2px 2px #6E5C5C;
+    color : #5B5B5B;
+    text-shadow: 0px -1px 1px lightgrey;
+    cursor : default;
+}
+
+/*-------------------------------------*/
+/*---- Begninning of tasks area -------*/
+/*-------------------------------------*/
+
+#tasksWrapper {    
+    overflow:auto;    
+    background: #008E9F;
+    width:680px; 
+    height: 100%;
+    /*padding: 10px 0 4px 0;  Removed this and replaced it with margin:11px auto in .whole task, to get overflow:auot to work properly*/     
+    box-shadow: 0px 0px 5px 2px #00202C;
+    border-radius: 5px;
+}
+
+.wholeTask {
+    width:660px;  
+    margin:11px auto;    
+    padding: 13px 0;
+    font-family : Molengo-Regular-webfont;
+    background:#8ED6DF; 
+    border-radius:5px;
+    box-shadow: inset 2px 2px 1px 0px #005142;
+}
+
+.wholeTask button {    
+    margin-right: 5px; 
+    border-radius: 5px;
+    border : none;
+    box-shadow: 0px 0px 1px 1px black;
+    cursor : pointer;
+}
+
+div.mainButtons, div.subButtons{
+    display: inline-block;
+    margin: 5px 0px 8px 180px;
+}
+
+div.subButtons{
+    margin-left: 229px;
+}
+
+.mainTask {  
+    margin:auto;
+    width:610px;
+    font-size : 18px;        
+    border-bottom: 1px solid black;
+    overflow:hidden;
+}
+
+.mainTask button{    
+    width:50px;
+    height: 20px;
+    background : #008190;
+    color :#C4F4F9;    
+    text-shadow: 0px 1px 1px black;    
+}
+
+.mainTask button.inactiveMain {
+    background : #97ADAF;
+    color: #79898A;
+    text-shadow: 0px -1px 1px lightgrey;
+    cursor:default;
+}
+
+button.mainCheck {
+    width:74px;
+    height: 20px;
+    font-family : Komika_display-webfont;    
+    font-size: 16px;
+    padding:0 7px;
+    background: #F04A47;
+}
+
+.subTask {
+    border-bottom: 1px solid black;
+    width :575px;
+    margin-left: 56px;
+    overflow:hidden;
+}
+
+.subTask:last-child{
+    border:none;
+}
+
+.subTask button {         
+    background: #00DCF7;
+    width:50px;
+    height : 20px;   
+}
+
+.subTask button.inactiveSub{
+    background : #003941;
+    color:darkslategray;
+    cursor:default;
+}
+
+button.subCheck{
+    background:#B03D14;
+    font-family : Komika_display-webfont;  
+    text-shadow: 0px 1px 1px black;    
+    color:#FFF4F1;
+    width:60px;
+}
+
+/*-------------------------------------*/
+/*---- End of tasks area---------------*/
+/*-------------------------------------*/
+
+
