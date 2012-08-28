@@ -46,6 +46,6 @@
 
 $(function(){   
     
-    $("#colorField").miniColors();
+    $("#prioritySelect").selectbox();
     
 })

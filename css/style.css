@@ -1,0 +1,260 @@
+@font-face {
+    font-family:Hattori_Hanzo-webfont;
+    src: url('../fonts/Hattori_Hanzo-webfont.ttf');         
+}
+
+.clearfix:before, .clearfix:after {
+  content: ".";    
+  display: block;    
+  height: 0;    
+  overflow: hidden; 
+}
+.clearfix:after {clear: both;}
+
+* {
+    padding:0;
+    margin:0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    
+}
+
+li{
+    list-style:none;
+}
+
+#ALLwrapper {    
+    width: 800px;
+    margin: auto;    
+}
+
+/* ------- Poster --------*/
+
+#headerWrapper { 
+    width: 800px;
+}
+
+#poster {
+    width:150px;
+    float:left;
+    margin: 10px 15px 5px 5px;
+    padding : 5px 0 5px 5px;
+    border-right: 1px solid grey;
+    display: inline-block;
+}
+
+#poster h1{
+    color:black;
+    font-family:arial;
+    font-size : 35px;
+}
+
+/*------ MTControllers -----*/
+
+#MTControllers {
+    margin-top: 16px;
+    float:left;
+    display: inline-block;
+}
+
+#MTControllers input{
+    border :1px solid grey;
+    border-radius: 5px;
+    padding-left: 8px;
+    font-size: 15px;
+    height: 35px;
+}
+
+#MTControllers button{
+    width : 80px;
+    height: 35px;
+    border:none;
+    border-radius: 5px;
+    background:darkslategray;
+    color:lightcyan;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#firstAddScrn {    
+    display: inline-block;    
+}
+
+#firstAddScrn input{
+    width : 520px;    
+    margin-right: 2px;
+}
+
+#secondAddScrn {
+    display:none;    
+    
+}
+
+#secondAddScrn label {
+    font-family: arial;
+}
+
+#secondAddScrn input {
+    width :250px;
+    float:left;
+    margin-right: 7px;
+}
+
+#taskOptions, #taskInfo {
+    display: none;
+}
+
+/*----- Beginning of tasks wrapper -----*/
+
+#tasksWrapper {
+    padding : 12px;
+    width:750px;
+    margin:auto;
+}
+
+#categories {
+    border-bottom: 1px solid grey;
+}
+
+#categories li {
+/*    background: blue;*/
+    font-family: arial;
+    display:inline-block;
+    margin : 0px 5px;
+    color :grey;
+    cursor:pointer;    
+}
+
+.wholeTask {
+    font-family: arial;
+}
+
+.mainTaskWrapper {
+    position: relative;
+    padding:5px;
+    font-size: 15px;
+    width:740px;
+    border-bottom:1px solid lightgray;
+}
+
+.mainTaskWrapper:hover {
+}
+
+.mainTaskWrapper label {
+    vertical-align: middle;
+}
+.mainMarker{
+    display: inline-block;
+    float:left;
+    margin-top: 0px;
+    margin-right: 3px;
+    height:22px;
+    width:6px;
+    background: red;
+}
+
+.subTrigger {
+    display: inline-block;
+    position:absolute;
+    float: left;
+    height: 9px;
+    width: 25px;
+    left: 360px;
+    top:22px;
+    cursor : pointer;
+    background: url('../img/sub_trigger.png') no-repeat center lightgrey;
+    border: 1px solid lightcyan;
+    border-bottom:none;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.subTrigger:hover {
+    border:1px solid grey;
+    border-bottom:none;
+}
+
+.subTrigger.opened{
+    background: url('../img/sub_trigger_opened.png') no-repeat center lightgrey;    
+}
+
+div.holder , div.checkButton, div.optTrigger {
+    display: inline-block;
+    opacity: 0.2;
+    height: 20px;
+    width: 20px;
+    float:right;
+    margin-top: 0px;
+    margin-left:5px;
+    cursor: pointer;
+}
+
+div.checkButton {
+    background: url('../img/check.png') no-repeat center;
+}
+
+div.checkButton:hover {
+    opacity: 1.0;
+}
+
+div.optTrigger {
+    background: url('../img/toggle_down_light.png') no-repeat center;
+}
+
+div.optTrigger:hover{
+    opacity: 1.0;
+}
+
+div.optTrigger.active{  
+    opacity: 1.0;
+    border-radius: 5px 5px 0px 0px;
+    background: url('../img/toggle_down_light_opened.png') no-repeat center darkslategray;
+}
+
+div.holder {
+    opacity: 1.0;
+    background: url('../img/holder.png') no-repeat center;
+    cursor: move;
+}
+
+.subTask .checkButton , .subTask .optTrigger, .subTask .holder {
+    margin-top: -3px;
+}
+
+.subTaskWrapper{
+    background: #f2f2f2;
+    width: 700px;
+    margin-left:25px;
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid lightgrey;
+    border-top:none;
+    
+}
+
+.subTask {
+    border-bottom: 1px dotted lightgray;
+    color:darkslategray;
+    padding: 7px;
+    font-size : 14px;
+}
+
+.subTask img {
+    float:right;
+    margin-left:10px;
+    cursor:move;
+}
+
+.subTask:last-of-type {
+    border: none;
+}
+
+
+.mainOptions, .subOptions {
+    display:none;
+}
