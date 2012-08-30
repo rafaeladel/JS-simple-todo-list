@@ -4,17 +4,14 @@
         <title>CHECK!</title>
         <link rel="stylesheet" href="css/style.css">    
         <link rel="stylesheet" href="css/jquery.selectbox.css">
-		<link rel="stylesheet" href="css/jquery-ui-1.8.23.custom.css">
+        <link rel="stylesheet" href="miniColors/jquery.miniColors.css">
         <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-		<script type="text/javascript" src="js/helper_misc.js"></script>
-		<script type="text/javascript" src="js/plugins/jquery-ui-1.8.23.custom.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery.selectbox-0.2.min.js"></script> 
-		<script type="text/javascript" src="js/helper_main_task.js"></script>		
+        <script type="text/javascript" src="js/jquery.selectbox-0.2.min.js"></script>
+        <script type="text/javascript" src="miniColors/jquery.miniColors.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
         <div id="ALLwrapper">
-			<div id="errorMSG"><p></p><div id="closeMSG"></div></div>
             <div id="headerWrapper" class="clearfix">
                 <div id="poster"><h1>CHECK!</h1></div>
                 <div id="MTControllers">                    
@@ -24,66 +21,109 @@
                     </div>
                     <div id="secondAddScrn">
                         <input type="text" name="mainCategory" id="mainCatInput" placeholder="Category">
-                        <div id="prioritySelector">							
-							<div id="prioritySlider"></div>
-							<p>test</p>
-						</div>               
+                        <select name="priority" id="prioritySelect">  
+                            <option value disabled selected>Select Priority</option>
+                            <option value="2">Urgent</option>
+                            <option value="1">Normal</option>
+                            <option value="0">Low</option>
+                        </select>                    
                         <button id="addMain">Done</button>                
                         <button id="backMain">Back</button>
                     </div>
                 </div>                    
-            </div>          
-            <div id="catWrapper">
-				<div id="categories">
-					<ul>
-                        <li class="selected">all</li>
+            </div>
+            
+            <div id="taskOptions">
+                <fieldset id="selectionArea">
+                    <legend>
+                        Selected task(s):
+                    </legend>
+                    <div class="selectedTask">
+                      this is task 1
+                    </div>                    
+                </fieldset>
+
+                <div id="priorityArea">
+                    <label>Priority:</label>
+                    <select name="priority">                    
+                        <option value="2">Urgent</option>
+                        <option value="1" selected>Normal</option>
+                        <option value="0">Low</option>
+                    </select>
+                </div>
+
+                 <div id="colorPickerArea">
+                    <label>Color:</label>
+                    <input type="hidden" id="colorField">
+                </div>
+
+                <div id="descriptionArea">
+                    <label>Description:</label>
+                    <textarea id="taskDescription" placeholder="Add desciption for the task.. "></textarea>
+                </div>
+
+                <div class="mainBtnWrapper">                
+                    <button id="discardButton">Discard</button>
+                    <button id="saveButton">Save</button>
+                </div>
+
+            </div>
+            <div id="taskInfo">taskInfo
+            
+            </div>
+
+            <div id="tasksWrapper">
+                <div id="categories">
+                    <ul>
+                        <li>cat1</li>
+                        <li>cat2</li>
+                        <li>cat3</li>
+                        <li>cat4</li>
                     </ul>
                 </div>
-			</div>
-            <div id="tasksWrapper">                
-                <!-- <div class="wholeTask">                        
-                        <div class="subTaskAdd">
-							<input type="text" name="subTask" id="subTaskInput" placeholder="Enter a new sub task">
-							<select name="priority" class="prioritySelectSub">  
-								<option value disabled selected>Select Priority</option>
-								<option value="2">Urgent</option>
-								<option value="1">Normal</option>
-								<option value="0">Low</option>
-							</select>                    
-							<button class="addSub">Done</button>                
-							<button class="backCancel">Cancel</button>
-                        </div>
-                        <div class="subTaskWrapper clearfix">
+                <div class="wholeTask">
+                        <div class="mainTaskWrapper clearfix">
+                            <!-- All ID names are to be changed later on -->
+                            <div class="mainMarker"></div>
+                            <label for="task1">This is task1</label>
+                            <div class="holder"></div>
+                            <div class="subTrigger"></div>
+                            <ul class="mainOptions">
+                                <li id="mainInfo">Details</li>
+                                <li id="mainDivide">Divide</li>
+                                <li id="mainEdit">Edit</li>
+                                <li id="mainDelete">Delete</li>
+                            </ul>                               
+                            <div class="checkButton"></div>
+                            <div class="optTrigger"></div>
+                        </div> 
+                        <div class="subTaskWrapper">
                             <div class="subTask">
-								<div class="subMarker"></div>
+                                <input type="checkbox" name="task1" id="task1">
                                 <label for="task1">This is subtask1</label>
                                 <div class="holder"></div>
-                                <div class="subOptions">
-                                    <ul>
-                                        <li id="subInfo">Details</li>
-                                        <li id="subEdit">Edit</li>
-                                        <li id="subDelete">Delete</li>
-                                    </ul>    
-                                </div>
+                                <ul class="subOptions">
+                                    <li id="subInfo">Details</li>
+                                    <li id="subEdit">Edit</li>
+                                    <li id="subDelete">Delete</li>
+                                </ul>    
                                 <div class="checkButton"></div>
                                 <div class="optTrigger"></div>
                             </div>
                             <div class="subTask">
-								<div class="subMarker"></div>
+                                <input type="checkbox" name="task1" id="task1">
                                 <label for="task1">This is subtask2</label>
                                 <div class="holder"></div>
-                                <div class="subOptions">
-                                    <ul>
-                                        <li id="subInfo">Details</li>
-                                        <li id="subEdit">Edit</li>
-                                        <li id="subDelete">Delete</li>
-                                    </ul>    
-                                </div>
+                                <ul class="subOptions">
+                                    <li id="subInfo">Details</li>
+                                    <li id="subEdit">Edit</li>
+                                    <li id="subDelete">Delete</li>
+                                </ul>    
                                 <div class="checkButton"></div>
                                 <div class="optTrigger"></div>
                             </div> 
                         </div>
-				</div>	 -->				
+                    </div>
             
             </div>
         </div>
