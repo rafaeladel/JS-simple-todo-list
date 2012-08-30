@@ -1,3 +1,8 @@
+@font-face {
+    font-family:Hattori_Hanzo-webfont;
+    src: url('../fonts/Hattori_Hanzo-webfont.ttf');         
+}
+
 .clearfix:before, .clearfix:after {
   content: ".";    
   display: block;    
@@ -54,7 +59,6 @@ li{
 /*------ MTControllers -----*/
 
 #MTControllers {
-	
     margin-top: 16px;
     float:left;
     display: inline-block;
@@ -79,7 +83,7 @@ li{
     cursor: pointer;
 }
 
-#firstAddScrn {    	
+#firstAddScrn {    
     display: inline-block;    
 }
 
@@ -89,7 +93,6 @@ li{
 }
 
 #secondAddScrn {
-/* background:yellow;	 */
     display:none;    
     
 }
@@ -104,40 +107,20 @@ li{
     margin-right: 7px;
 }
 
-#prioritySelector {
-	display:inline-block;
-	float:left;
-	margin-right: 7px;
-	padding-left:15px;
-	width:169px;
-	height:35px;
-	border:1px solid grey;
-	border-radius:5px;
+#taskOptions, #taskInfo {
+    display: none;
 }
 
-#prioritySelector p {
-	display:inline-block;
-	font-family:arial;
-	font-size:14px;
-	float:left;
-	margin-top:9px;
-	margin-left:23px;
+/*----- Beginning of tasks wrapper -----*/
+
+#tasksWrapper {
+    padding : 12px;
+    width:750px;
+    margin:auto;
 }
 
-#prioritySlider {
-	display:inline-block;
-	float:left;
-	height:7px;
-	margin-top : 13px;
-	width:70px;
-}
-
-/*-------- Start of category wrapper ----- */
-
-#catWrapper{	
+#categories {
     border-bottom: 1px solid grey;
-	margin:auto;
-	width:760px;
 }
 
 #categories li {
@@ -147,18 +130,6 @@ li{
     margin : 0px 5px;
     color :grey;
     cursor:pointer;    
-}
-
-#categories li.selected {
-	color:black;
-	font-weight : bold;
-}
-
-
-/*----- Beginning of tasks wrapper -----*/
-#tasksWrapper {
-    width:750px;
-    margin:auto;
 }
 
 .wholeTask {
@@ -171,6 +142,9 @@ li{
     font-size: 15px;
     width:740px;
     border-bottom:1px solid lightgray;
+}
+
+.mainTaskWrapper:hover {
 }
 
 .mainTaskWrapper label {
@@ -187,7 +161,7 @@ li{
 }
 
 .subTrigger {
-    display: none;
+    display: inline-block;
     position:absolute;
     float: left;
     height: 9px;
@@ -214,15 +188,15 @@ div.holder , div.checkButton, div.optTrigger {
     display: inline-block;
     opacity: 0.2;
     height: 20px;
-    width: 20px;	
-	float:right;
+    width: 20px;
+    float:right;
     margin-top: 0px;
     margin-left:5px;
     cursor: pointer;
 }
 
 div.checkButton {
-    background: url('../img/check_checked.png') no-repeat center;	
+    background: url('../img/check.png') no-repeat center;
 }
 
 div.checkButton:hover {
@@ -238,7 +212,7 @@ div.optTrigger:hover{
 }
 
 div.optTrigger.active{  
-    opacity: 0.9;
+    opacity: 1.0;
     border-radius: 5px 5px 0px 0px;
     background: url('../img/toggle_down_light_opened.png') no-repeat center darkslategray;
 }
@@ -253,45 +227,7 @@ div.holder {
     margin-top: -3px;
 }
 
-.subTaskAdd {
-	display:none;
-    position: absolute;
-    background: darkslategray;
-    border-radius: 0px 0px 5px 5px;
-    width: 583px;
-    height: 39px;
-    margin-left: 80px;
-	padding:9px;
-	opacity:0.9;
-	border:1px solid #1F1B1C;
-	border-top:none;
-	box-shadow: 0px 0px 7px 0px darkslategray;	
-}
-
-.subTaskAdd input{
-	float:left;
-	border :1px solid grey;
-    border-radius: 5px;
-    padding-left: 8px;
-    font-size: 15px;
-    height: 35px;
-	width:223px;
-	margin-right:3px;
-}
-
-.subTaskAdd button{
-	width : 80px;
-    height: 35px;
-    border:none;
-    border-radius: 5px;
-    background:grey;
-    color:lightcyan;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-
-.subTaskWrapper{	
+.subTaskWrapper{
     background: #f2f2f2;
     width: 700px;
     margin-left:25px;
@@ -314,87 +250,11 @@ div.holder {
     cursor:move;
 }
 
-.subMarker {
-	display: inline-block;
-    float:left;
-	margin: 0px 3px 0px -2px;    
-    height:16px;
-    width:4px;
-    background: red;
-}
-
 .subTask:last-of-type {
     border: none;
 }
 
-.mainOptions , .subOptions {
-    display:none;	
-    position:absolute;
-    background : darkslategrey;
-    left : 626px;
-    top:25px;
-    border-radius: 5px 0px 5px 5px;
-}
 
-.mainOptions li , .subOptions li {
-    color : lightgrey;
-    border-bottom: 1px solid grey;
-    padding:5px 15px;
-    font-size : 12px;  
-    cursor:pointer;
-}
-
-.mainOptions li:hover  , .subOptions li:hover {
-    background : grey;
-}
-
-.mainOptions li:first-of-type:hover , .subOptions li:first-of-type:hover{
-    border-radius: 5px 0px 0px 0px;
-}
-
-.mainOptions li:last-of-type , .subOptions li:last-of-type{
-    border:none;
-}
-
-.mainOptions li:last-of-type:hover , .subOptions li:last-of-type:hover{
-    border-radius: 0px 0px 5px 5px;
-}
-
-.subOptions{
+.mainOptions, .subOptions {
     display:none;
-}
-
- div#errorMSG { 
-	display:none;	
-	position:absolute;
-	left: 40%;
-	right:40%;
-	background: darkslategray;
-    border-radius: 0px 0px 5px 5px;	    
-	color:lightcyan;
-	font-family:arial;
-	font-size:15px;
-	opacity:0.9;
-	border:1px solid #1F1B1C;
-	border-top:none;	
-	box-shadow: 0px 0px 7px 0px darkslategray;	
-	padding:9px;
-}
-
-#errorMSG p {
-	display:inline-block;
-}
-
-#closeMSG {
-	position:absolute;
-	width:20px;
-	height:20px;
-	display:inline-block;
-	right:15px;
-	cursor:pointer;
-	background: url("../img/close.png") no-repeat right center;		
-}
-
-#closeMSG:hover {
-	background: url("../img/close_hover.png") no-repeat right center;
 }
