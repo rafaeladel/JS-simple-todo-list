@@ -12,7 +12,7 @@ $(function(){
 				
 				//if task already exists
 				var MTLabel = $("#mainTaskInput").val();
-				if(MainUtil.totalTasksInfo.tasksNames.indexOf(MTLabel) != -1){			
+				if($.inArray(MTLabel, MainUtil.totalTasksInfo.tasksNames) != -1){			
 					$(".wholeTask").each(function(){
 						var taskLabel = $(this).find(".mainTaskLabel").text();
 						if(taskLabel == MTLabel){

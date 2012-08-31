@@ -53,7 +53,7 @@ var MainUtil = {
 			MTCategory = "uncategorized";
 		}
 		MTContents.attr('data-cat', MTCategory);
-		if(this.totalTasksInfo.tasksCat.indexOf(MTCategory) == -1){
+		if($.inArray(MTCategory,this.totalTasksInfo.tasksCat) == -1){
 			this.totalTasksInfo.tasksCat.push(MTCategory);
 			$("#categories ul").append("<li>" + MTCategory +"</li>");
 		}
