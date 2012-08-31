@@ -1,44 +1,4 @@
-$(function(){   
-    var test="";
-    $("#prioritySelect").selectbox("disable");
-	$(".prioritySelectSub").selectbox();
-	$("#prioritySlider").slider({
-		min: 0,
-		max: 2,
-		step:1,		
-		orientation:"horizontal",
-		create : function(event,ui){
-			ui.value = 0 ;
-			$(this).siblings().text("Low").css("color","blue");
-		},
-		slide : function(event, ui){
-			if(ui.value == 0){
-				$(this).siblings().text("Low").css("color","blue");
-			} else if(ui.value == 1){
-				$(this).siblings().text("Medium").css("color","black");
-			} else if(ui.value == 2){
-				$(this).siblings().text("Urgent").css("color","red");
-			}
-		}
-	});
-	$(".subTaskWrapper").hide();
-	
-	$(".subTrigger").toggle(
-		function(){
-			$(".subTaskWrapper").slideDown(100);
-		},
-		function(){
-			$(".subTaskWrapper").slideUp(100);
-		}
-	);
-	
-	$("#mainCatInput").autocomplete({
-		source: MainUtil.catArr,
-		autoFocus: true
-	});
-	
-	$("#mainTaskInput").focus();
-	
+$(function(){
 	//mainTask Addition animation
 	$("#mainNext, #mainTaskInput").on('click keypress', function(evt){
 		if(evt.type == "click" || evt.type =="keypress"){
@@ -61,13 +21,13 @@ $(function(){
 					});			
 					Util.showError("Task already exists!");			
 					return false;
+				} else {			
+					//if everything is ok 
+					$(this).parent().fadeOut(100, function(){
+						$(this).siblings().fadeIn(100).find("input").val("").focus();
+					});	
+					Util.hideError();
 				}
-				
-				//if everything is ok 
-				$(this).parent().fadeOut(100, function(){
-					$(this).siblings().fadeIn(100).find("input").val("").focus();
-				});	
-				Util.hideError();
 			}
 		}
 	});
@@ -78,11 +38,11 @@ $(function(){
 		});
 	});
 
-	$("#addMain, #mainCatInput").on('click keypress', function(evt){
+	$("#addMain, #mainCatInput").on('click keypress', function(evt){	
 		if(evt.type == "click" || evt.type =="keypress"){
 			if((evt.type =="click" && evt.target.id == "addMain") ||
 				(evt.which == 13 && evt.target.id=="mainCatInput")){	
-					MainUtil.add(test);					
+					MainUtil.add();					
 					$(this).parent().fadeOut(100, function(){
 						$(this).siblings().fadeIn(100).find("input").val("").focus();
 					});
@@ -105,8 +65,34 @@ $(function(){
 							currentTag.addClass("selected");
 						});
 					});	
+					Util.calcTaskInfo(false);
+					
 			}
 		}
+	});
+
+	$("#tasksWrapper").on('click', '.mainTaskWrapper .checkButton' , function(){
+		var currentTask = $(this).parent().parent();
+		currentTask.prependTo($("#completedTasks"));
+		Util.calcTaskInfo(true);
+		currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();
+		$(this).css('opacity','1.0');
+	});
+	
+	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
+		var currentTask = $(this).parent().parent();
+		currentTask.prependTo($("#tasksWrapper"));
+		Util.calcTaskInfo(true);
+		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();
+		/* $(this).hover(
+			function(){
+				$(this).css('opacity','1.0');
+			},
+			function(){
+				$(this).css('opacity','0.2');
+			}
+		); */
+		$(this).css('opacity','0.2');
 	});
 })
 
