@@ -224,7 +224,7 @@ li{
     background: url('../img/sub_trigger_opened.png') no-repeat center lightgrey;    
 }
 
-div.holder , div.checkButton, div.optTrigger, div.addSubButton {
+div.holder , div.checkButton, div.optTrigger, div.addSubButton , div.dateInfo {
     display: inline-block;
     opacity: 0.2;
     height: 20px;
@@ -233,6 +233,14 @@ div.holder , div.checkButton, div.optTrigger, div.addSubButton {
     margin-top: 0px;
     margin-left:5px;
     cursor: pointer;
+}
+
+div.dateInfo {
+	cursor:default;
+	opacity:1.0;
+	color : #D6BFC8;
+	width:200px;
+	margin-right : 10px;
 }
 
 div.checkButton {

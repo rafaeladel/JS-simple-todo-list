@@ -324,14 +324,14 @@
  */
 /* IE/Win - Fix animation bug - #4615 */
 .ui-accordion { width: 760px; margin:auto;} 
-.ui-accordion .ui-accordion-header {cursor: pointer; position: relative; margin-top: 1px; zoom: 1; border:none; border-bottom:1px solid grey;}
+.ui-accordion .ui-accordion-header {cursor: pointer; position: relative; margin-top: 1px; zoom: 1; border:none;}
 .ui-accordion .ui-accordion-li-fix { display: inline; }
 .ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
 .ui-accordion .ui-accordion-header a { display: block; font-size: 14px; padding: .5em .5em .5em .5em; color: black; background:white; }
 .ui-accordion .ui-accordion-header a:hover {background:white;}
 .ui-accordion-icons .ui-accordion-header a { padding:5px 0px 5px 20px;}
 .ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: 0px; top: 50%; margin-top: -10px;}
-.ui-accordion .ui-accordion-content { padding:0; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; border:none; }
+.ui-accordion .ui-accordion-content { padding:0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; border:none; border-top: 1px solid grey; }
 .ui-accordion .ui-accordion-content-active { display: block;  }
 
 /*!
