@@ -1,10 +1,11 @@
 var MainUtil = {
 	tasksArr : [],
 	catArr : ["all"],
-	add : function(selectedVal){		
+	priorityArr: {'urgent':0, 'normal':0, 'low':0},
+	add : function(){		
 		
 		var MTLabel = $("#mainTaskInput").val(),  //task label	
-			MTCategory = $("#mainCatInput").val(), //task category 
+			MTCategory = $("#mainCatInput").val().toLowerCase(), //task category 
 			MTPriority = $("#prioritySlider").slider("value"),  //task priority		
 			MTContents = $('<div class="wholeTask">\
 								<div class="mainTaskWrapper clearfix">\
@@ -14,10 +15,10 @@ var MainUtil = {
 									<div class="subTrigger"></div>\
 									<div class="checkButton"></div>\
 									<div class="optTrigger"></div>\
+									<div class="addSubButton"></div>\
 									<div class="mainOptions">\
 										<ul>\
 											<li id="mainInfo">Details</li>\
-											<li id="mainDivide">Divide</li>\
 											<li id="mainEdit">Edit</li>\
 											<li id="mainDelete">Delete</li>\
 										</ul>\
@@ -44,17 +45,26 @@ var MainUtil = {
 		
 		//setting priority marker color
 		if(MTPriority == 2){ 
-			MTContents.find(".mainMarker").css("background-color", "red");
+			this.priorityArr["urgent"]++;			
+			MTContents.attr('data-priority', 'urgent').find(".mainMarker").css("background-color", "red");
 		} else if(MTPriority == 1){
-			MTContents.find(".mainMarker").css("background-color", "black");
+			this.priorityArr["normal"]++;
+			MTContents.attr('data-priority', 'normal').find(".mainMarker").css("background-color", "black");
 		} else if(MTPriority == 0){
-			MTContents.find(".mainMarker").css("background-color", "blue");
+			this.priorityArr["low"]++;
+			MTContents.attr('data-priority', 'low').find(".mainMarker").css("background-color", "blue");
 		}		
 		
 		MTContents.hide();
 		$("#tasksWrapper").prepend(MTContents);	
-		MTContents.slideDown(100);
-		
-		
+		MTContents.slideDown(100);	
+		$("#tasksWrapper").sortable({
+			axis: "y",
+			scroll: "true",
+			scrollSpeed : 10,
+			scrollSensitivity: 10,
+			handle: $(".holder"),
+			opacity : 0.7			
+		});	
 	}
 };
