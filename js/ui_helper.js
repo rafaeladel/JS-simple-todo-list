@@ -31,7 +31,7 @@ $(function(){
 	);
 	
 	$("#mainCatInput").autocomplete({
-		source: MainUtil.catArr,
+		source: MainUtil.totalTasksInfo.tasksCat,
 		autoFocus: true
 	});		
 	
