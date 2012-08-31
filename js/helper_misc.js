@@ -1,4 +1,4 @@
-var Util = {
+var Util = {					
 	showError : function(msg){		
 		$("#errorMSG").slideDown(200).find("p").text(msg);
 		$("#errorMSG #closeMSG").click(function(){
@@ -21,11 +21,11 @@ var Util = {
 					lowCount++;
 				}
 			});
-			MainUtil.priorityArr["urgent"] = urgentCount;
-			MainUtil.priorityArr["normal"] = normalCount;
-			MainUtil.priorityArr["low"] = lowCount;
+			MainUtil.totalTasksInfo.tasksPriority["urgent"] = urgentCount;
+			MainUtil.totalTasksInfo.tasksPriority["normal"] = normalCount;
+			MainUtil.totalTasksInfo.tasksPriority["low"] = lowCount;
 		}
-		$("#mainTaskInfo").text("All:"+ $("#tasksWrapper .wholeTask").length + " [ Urgent:" + MainUtil.priorityArr["urgent"] + " | Normal:"+ MainUtil.priorityArr["normal"] + " | Low:" + MainUtil.priorityArr["low"] + " ]");
+		$("#mainTaskInfo").text("All:"+ $("#tasksWrapper .wholeTask").length + " [ Urgent:" + MainUtil.totalTasksInfo.tasksPriority["urgent"] + " | Normal:"+ MainUtil.totalTasksInfo.tasksPriority["normal"] + " | Low:" + MainUtil.totalTasksInfo.tasksPriority["low"] + " ]");
 		$("#completedTaskInfo").text("All:" + $("#completedTasks .wholeTask").length);
 	}	
 }
