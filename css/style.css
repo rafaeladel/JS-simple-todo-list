@@ -113,7 +113,7 @@ li{
 	float:left;
 	margin-right: 7px;
 	padding-left:15px;
-	width:169px;
+	width:150px;
 	height:35px;
 	border:1px solid grey;
 	border-radius:5px;
@@ -125,7 +125,7 @@ li{
 	font-size:14px;
 	float:left;
 	margin-top:9px;
-	margin-left:23px;
+	margin-left:19px;
 }
 
 #prioritySlider {
@@ -161,7 +161,7 @@ li{
 
 /*----- Beginning of tasks wrapper -----*/
 #tasksWrapper {
-    width:750px;
+    width:760px;
     margin:auto;
 }
 
@@ -173,13 +173,23 @@ li{
     position: relative;
     padding:5px;
     font-size: 15px;
-    width:740px;
-    border-bottom:1px solid lightgray;
+    width:750px;
+    border-bottom:1px solid #EBD8DF;
 }
 
 .mainTaskWrapper label {
     vertical-align: middle;
 }
+
+#mainTaskInfo , #completedTaskInfo {
+	font-size:13px;	
+	height:20px;
+	margin-top: -23px;
+	margin-right:10px;
+	float:right;
+}
+
+
 .mainMarker{
     display: inline-block;
     float:left;
@@ -214,7 +224,7 @@ li{
     background: url('../img/sub_trigger_opened.png') no-repeat center lightgrey;    
 }
 
-div.holder , div.checkButton, div.optTrigger {
+div.holder , div.checkButton, div.optTrigger, div.addSubButton {
     display: inline-block;
     opacity: 0.2;
     height: 20px;
@@ -229,22 +239,24 @@ div.checkButton {
     background: url('../img/check_checked.png') no-repeat center;	
 }
 
-div.checkButton:hover {
-    opacity: 1.0;
+div.addSubButton {
+    background: url('../img/add_sub.png') no-repeat center;	
 }
 
 div.optTrigger {
     background: url('../img/toggle_down_light.png') no-repeat center;
 }
 
-div.optTrigger:hover{
-    opacity: 1.0;
-}
 
 div.optTrigger.active{  
     opacity: 0.9;
     border-radius: 5px 5px 0px 0px;
     background: url('../img/toggle_down_light_opened.png') no-repeat center darkslategray;
+}
+
+
+div.checkButton:hover , div.addSubButton:hover , div.optTrigger:hover{
+    opacity: 1.0 !important;
 }
 
 div.holder {
