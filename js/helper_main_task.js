@@ -1,5 +1,5 @@
 var MainUtil = {
-	singleTaskInfo : [],	
+	mainTaskInfo : [],	
 	totalTasksInfo : {
 		tasksNames : [],
 		tasksPriority : {
@@ -9,13 +9,18 @@ var MainUtil = {
 		},
 		tasksCat : ["all"]
 	},
-	priorityArr: {'urgent':0, 'normal':0, 'low':0},	
-	setTaskInfo : function(name, category, priority, date){			
-		this.singleTaskInfo[name] = {
+	setTaskInfo : function(name, category, priority, date){
+		switch(priority){
+			case 0: priority = "low"; break;
+			case 1: priority = "normal"; break;
+			case 2: priority = "urgent"; break;
+		}
+		this.mainTaskInfo[name] = {
 			label : name,
 			category: category,
 			priority: priority,
-			date: "today"
+			date: date,
+			subTasks : []
 		}				
 	},
 	add : function(){	
@@ -26,12 +31,12 @@ var MainUtil = {
 								<div class="mainTaskWrapper clearfix">\
 									<div class="mainMarker"></div>\
 									<label class="mainTaskLabel"></label>\
-									<div class="holder"></div>\
-									<div class="subTrigger"></div>\
+									<div class="mainHolder"></div>\
+									<div class="subTrigger opened"></div>\
 									<div class="checkButton"></div>\
 									<div class="optTrigger"></div>\
 									<div class="addSubButton"></div>\
-									<div class="dateInfo">Added at : 26/6/1990</div>\
+									<div class="dateInfo"></div>\
 									<div class="mainOptions">\
 										<ul>\
 											<li id="mainInfo">Details</li>\
@@ -40,6 +45,16 @@ var MainUtil = {
 										</ul>\
 									</div>\
 								</div>\
+								<div class="subTaskAdd">\
+									<input type="text" name="subTask" class="subTaskInput" placemainHolder="Enter a new sub task">\
+									<div name="priority" class="prioritySelectSub">\
+										<div class="prioritySubSlider"></div>\
+										<p>Normal</p>\
+									</div>\
+									<button class="addSub">Done</button>\
+									<button class="cancelSub">Cancel</button>\
+								</div>\
+								<div class="subTaskWrapper clearfix"></div>\
 							</div>');
 							
 							
@@ -71,16 +86,42 @@ var MainUtil = {
 			MTContents.attr('data-priority', 'low').find(".mainMarker").css("background-color", "blue");
 		}		
 		
-		MTContents.hide();
-		$("#tasksWrapper").prepend(MTContents);	
-		MTContents.slideDown(100);	
+		this.setTaskInfo(MTLabel, MTCategory, MTPriority, Util.getCurrentTime(true));
+		
+		MTContents.find(".mainTaskWrapper .dateInfo").text("Added: " + this.mainTaskInfo[MTLabel].date);		
+		$("#tasksWrapper").prepend(MTContents);
+		this.initialize(MTContents);		
+		MTContents.slideDown(100);			
+	},
+	initialize : function(el){
+		el.hide();		
 		$("#tasksWrapper").sortable({
 			axis: "y",
 			scroll: "true",
 			scrollSpeed : 10,
 			scrollSensitivity: 10,
-			handle: $(".holder"),
+			handle: ".mainHolder",
 			opacity : 0.7			
 		});	
+	
+		el.find(".prioritySubSlider").slider({
+			min: 0,
+			max: 2,
+			step:1,		
+			orientation:"horizontal",
+			create : function(event,ui){
+				ui.value = 0 ;
+				$(this).siblings().text("Low");
+			},
+			slide : function(event, ui){
+				if(ui.value == 0){
+					$(this).siblings().text("Low");
+				} else if(ui.value == 1){
+					$(this).siblings().text("Medium");
+				} else if(ui.value == 2){
+					$(this).siblings().text("Urgent");
+				}
+			}
+		});
 	}
 };
