@@ -26,7 +26,6 @@ $(function(){
 					$(this).parent().fadeOut(100, function(){
 						$(this).siblings().fadeIn(100).find("input").val("").focus();
 					});	
-					Util.hideError();
 				}
 			}
 		}
@@ -70,28 +69,67 @@ $(function(){
 			}
 		}
 	});
-
-	$("#tasksWrapper").on('click', '.mainTaskWrapper .checkButton' , function(){
-		var currentTask = $(this).parent().parent();
-		currentTask.prependTo($("#completedTasks"));
-		Util.calcTaskInfo(true);
-		currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();
-		$(this).css('opacity','1.0');
+	
+	$("#taskPool").on("mouseover", ".wholeTask", function(){
+		$(this).find(".dateInfo").css("display","inline-block");
 	});
+	
+	$("#taskPool").on("mouseout", ".wholeTask", function(){
+		$(this).find(".dateInfo").css("display","none");
+	});	
+	
+	$("#tasksWrapper").on('click', '.mainTaskWrapper .checkButton , .addSubButton' , function(){
+		if($(this).hasClass('checkButton')){
+			var currentTask = $(this).parent().parent();
+			currentTask.prependTo($("#completedTasks"));
+			Util.calcTaskInfo(true);
+			currentTask.find(".dateInfo").text("Completed " + Util.getCurrentTime(true));
+			currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();
+			$(this).css('opacity','1.0');
+		} else if($(this).hasClass('addSubButton')){
+			$(this).parent().siblings('.subTaskAdd').slideDown(100).find(".subTaskInput").focus();		
+		}
+		
+	});
+	
+	$("#tasksWrapper").on('click' , '.subTaskAdd .cancelSub, .subTaskAdd .addSub', function(){
+		if($(this).hasClass('cancelSub')){
+			$(this).parent().slideUp(100);
+		} else if($(this).hasClass('addSub')){
+			if($(this).siblings(".subTaskInput").val() == ""){
+				$(this).siblings(".subTaskInput").stop().effect('highlight' ,{}, 1000);
+				return false;
+			}
+			var STLabel = $(this).siblings(".subTaskInput").val(),
+				MTLabel = $(this).parent().siblings(".mainTaskWrapper").find(".mainTaskLabel").text();
+			if($.inArray(STLabel, MainUtil.mainTaskInfo[MTLabel].subTasks) != -1){
+				$(this).parent().siblings(".subTaskWrapper").find(".subTask").each(function(){
+					if($(this).find(".subTaskLabel").text() == STLabel){
+						$(this).effect('highlight' , {} , 1000);
+					}
+				});
+				Util.showError("Sub Task already exists!")					
+				return false;				
+			}
+			
+			
+			SubUtil.add($(this));
+			if($(this).parent().siblings(".subTaskWrapper").children().length == 1){
+				$(this).parent().siblings(".subTaskWrapper").show();
+			}			
+			$(this).parent().fadeOut(100);
+			$(this).siblings(".subTaskInput").val("");
+		}
+		
+	});
+	
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
 		var currentTask = $(this).parent().parent();
 		currentTask.prependTo($("#tasksWrapper"));
 		Util.calcTaskInfo(true);
-		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();
-		/* $(this).hover(
-			function(){
-				$(this).css('opacity','1.0');
-			},
-			function(){
-				$(this).css('opacity','0.2');
-			}
-		); */
+		currentTask.find(".dateInfo").text("Added " + MainUtil.mainTaskInfo[$(this).siblings(".mainTaskLabel").text()].date);
+		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();		
 		$(this).css('opacity','0.2');
 	});
 })
