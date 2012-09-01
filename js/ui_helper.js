@@ -1,6 +1,5 @@
 $(function(){
-    var test="";
-	$(".prioritySelectSub").slider();
+	//some of it is in helper_main_task.js
 	$("#prioritySlider").slider({
 		min: 0,
 		max: 2,
@@ -20,15 +19,16 @@ $(function(){
 			}
 		}
 	});
-	$(".subTaskWrapper").hide();	
-	$(".subTrigger").toggle(
-		function(){
-			$(".subTaskWrapper").slideDown(100);
-		},
-		function(){
-			$(".subTaskWrapper").slideUp(100);
+	
+	$("#taskPool").on("click", ".subTrigger", function(){
+		if($(this).parent().siblings(".subTaskWrapper").css("display") == "none"){
+			$(this).addClass("opened");
+			$(this).parent().siblings(".subTaskWrapper").slideDown(100);			
+		} else {
+			$(this).parent().siblings(".subTaskWrapper").slideUp(100);
+			$(this).removeClass("opened");
 		}
-	);
+	});
 	
 	$("#mainCatInput").autocomplete({
 		source: MainUtil.totalTasksInfo.tasksCat,
