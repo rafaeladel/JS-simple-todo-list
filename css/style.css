@@ -225,7 +225,7 @@ li{
     background: url('../img/sub_trigger_opened.png') no-repeat center lightgrey;    
 }
 
-div.holder , div.checkButton, div.optTrigger, div.addSubButton , div.dateInfo {
+div.mainHolder , div.checkButton, div.optTrigger, div.addSubButton , div.dateInfo , div.subHolder {
     display: inline-block;	
     opacity: 0.2;
     height: 20px;
@@ -237,11 +237,12 @@ div.holder , div.checkButton, div.optTrigger, div.addSubButton , div.dateInfo {
 }
 
 div.dateInfo {
+	display:none;
 	cursor:default;
+	width:auto;
 	opacity:1.0;
 	color : #D6BFC8;
-	width:200px;
-	margin-right : 10px;
+	margin-right : 7px;
 }
 
 div.checkButton {
@@ -268,29 +269,55 @@ div.checkButton:hover , div.addSubButton:hover , div.optTrigger:hover{
     opacity: 1.0 !important;
 }
 
-div.holder {
+div.mainHolder , div.subHolder{
     opacity: 1.0;
     background: url('../img/holder.png') no-repeat center;
     cursor: move;
 }
 
-.subTask .checkButton , .subTask .optTrigger, .subTask .holder {
+.subTask .checkButton , .subTask .optTrigger, .subTask .mainHolder , .subHolder{
     margin-top: -3px;
 }
 
 .subTaskAdd {
-	display:none;
+	display:none;	
     position: absolute;
+	z-index:2;
+	font-size:12px;
     background: darkslategray;
-    border-radius: 0px 0px 5px 5px;
-    width: 583px;
+    border-radius: 0px 0px 5px 5px;	
+	width:558px;
     height: 39px;
-    margin-left: 80px;
+    left:90px;
 	padding:9px;
 	opacity:0.9;
 	border:1px solid #1F1B1C;
 	border-top:none;
 	box-shadow: 0px 0px 7px 0px darkslategray;	
+}
+
+.prioritySelectSub {			
+	margin-left:5px;
+	display:inline-block;
+	width:120px;
+	height:15px;
+	border-radius:5px;
+	padding:10px;
+	border: 1px solid grey;
+	
+}
+
+.prioritySelectSub .prioritySubSlider {
+	display:inline-block;
+	float:left;		
+	margin-top : 4px;
+	width:50px;
+}
+
+.prioritySelectSub p {
+	color:lightgray;
+	float:left;
+	margin-left: 15px;
 }
 
 .subTaskAdd input{
@@ -301,13 +328,14 @@ div.holder {
     font-size: 15px;
     height: 35px;
 	width:223px;
-	margin-right:3px;
 }
 
 .subTaskAdd button{
+	margin-left: 7px;
 	width : 80px;
     height: 35px;
     border:none;
+	float:right;
     border-radius: 5px;
     background:grey;
     color:lightcyan;
@@ -317,6 +345,7 @@ div.holder {
 
 
 .subTaskWrapper{	
+	display:none;
     background: #f2f2f2;
     width: 700px;
     margin-left:25px;
