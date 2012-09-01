@@ -8,7 +8,8 @@
 		<script type="text/javascript" src="js/ui_helper.js"></script>
 		<script type="text/javascript" src="js/helper_misc.js"></script>
 		<script type="text/javascript" src="js/plugins/jquery-ui-1.8.23.custom.min.js"></script>
-		<script type="text/javascript" src="js/helper_main_task.js"></script>		
+		<script type="text/javascript" src="js/helper_main_task.js"></script>	
+		<script type="text/javascript" src="js/helper_sub_task.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
@@ -41,56 +42,9 @@
 			</div>
 			<div id="taskPool">
 				<h3><a href="#">Remaining</a><div id="mainTaskInfo">All:0 [ Urgent:0 | Normal:0 | Low:0 ]</div></h3>
-				<div id="tasksWrapper"> 				
-					<!-- <div class="wholeTask">                        
-							<div class="subTaskAdd">
-								<input type="text" name="subTask" id="subTaskInput" placeholder="Enter a new sub task">
-								<select name="priority" class="prioritySelectSub">  
-									<option value disabled selected>Select Priority</option>
-									<option value="2">Urgent</option>
-									<option value="1">Normal</option>
-									<option value="0">Low</option>
-								</select>                    
-								<button class="addSub">Done</button>                
-								<button class="backCancel">Cancel</button>
-							</div>
-							<div class="subTaskWrapper clearfix">
-								<div class="subTask">
-									<div class="subMarker"></div>
-									<label for="task1">This is subtask1</label>
-									<div class="holder"></div>
-									<div class="subOptions">
-										<ul>
-											<li id="subInfo">Details</li>
-											<li id="subEdit">Edit</li>
-											<li id="subDelete">Delete</li>
-										</ul>    
-									</div>
-									<div class="checkButton"></div>
-									<div class="optTrigger"></div>
-								</div>
-								<div class="subTask">
-									<div class="subMarker"></div>
-									<label for="task1">This is subtask2</label>
-									<div class="holder"></div>
-									<div class="subOptions">
-										<ul>
-											<li id="subInfo">Details</li>
-											<li id="subEdit">Edit</li>
-											<li id="subDelete">Delete</li>
-										</ul>    
-									</div>
-									<div class="checkButton"></div>
-									<div class="optTrigger"></div>
-								</div> 
-							</div>
-					</div>	 -->				
-				
-				</div>
+				<div id="tasksWrapper"></div>
 				<h3><a href="#">Completed</a><div id="completedTaskInfo">All:0</div></h3>
-				<div id="completedTasks">
-					
-				</div>
+				<div id="completedTasks"></div>
 			</div>
         </div>
     </body>
