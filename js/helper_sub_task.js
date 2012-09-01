@@ -35,6 +35,4 @@ var SubUtil = {
 		el.parent().siblings(".subTaskWrapper").prepend(STContents);
 		STContents.slideDown(100);
 	}
-	
-	
 }
