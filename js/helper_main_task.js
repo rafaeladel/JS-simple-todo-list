@@ -96,12 +96,12 @@ var MainUtil = {
 	initialize : function(el){
 		el.hide();		
 		$("#tasksWrapper").sortable({
-			axis: "y",
-			scroll: "true",
-			scrollSpeed : 10,
-			scrollSensitivity: 10,
+			axis: "y",			
+			revert:"true",
+			tolerance: "pointer",			
 			handle: ".mainHolder",
-			opacity : 0.7			
+			opacity : 0.7,
+			containment: "#tasksWrapper"
 		});	
 	
 		el.find(".prioritySubSlider").slider({
