@@ -284,14 +284,14 @@ div.mainHolder , div.subHolder{
     position: absolute;
 	z-index:2;
 	font-size:12px;
-    background: darkslategray;
+    background: #CCC4C4;	
     border-radius: 0px 0px 5px 5px;	
 	width:558px;
     height: 39px;
     left:90px;
 	padding:9px;
 	opacity:0.9;
-	border:1px solid #1F1B1C;
+	border:1px solid grey;
 	border-top:none;
 	box-shadow: 0px 0px 7px 0px darkslategray;	
 }
@@ -315,7 +315,7 @@ div.mainHolder , div.subHolder{
 }
 
 .prioritySelectSub p {
-	color:lightgray;
+	color:darkslategray;
 	float:left;
 	margin-left: 15px;
 }
@@ -337,7 +337,7 @@ div.mainHolder , div.subHolder{
     border:none;
 	float:right;
     border-radius: 5px;
-    background:grey;
+    background:darkslategray;
     color:lightcyan;
     font-size: 15px;
     cursor: pointer;
