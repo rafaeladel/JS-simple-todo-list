@@ -6,7 +6,7 @@ $(function(){
 				(evt.which == 13 && evt.target.id=="mainTaskInput")){			
 				//if textbox is empty
 				if($("#mainTaskInput").val() == ""){
-					$("#mainTaskInput").stop().effect('highlight' ,{}, 1000);
+					$("#mainTaskInput").stop().effect('highlight' ,{}, 1000).focus();
 					return false;
 				}
 				
@@ -81,20 +81,32 @@ $(function(){
 			currentTask.prependTo($("#completedTasks"));
 			Util.calcTaskInfo(true);
 			currentTask.find(".dateInfo").text("Completed " + Util.getCurrentTime(true));
-			currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();
-			$(this).css('opacity','1.0');
+			currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();			
 		} else if($(this).hasClass('addSubButton')){
 			$(this).parent().siblings('.subTaskAdd').slideDown(100).find(".subTaskInput").focus();		
 		}		
 	});
 	
 	$("#tasksWrapper").on("click", ".subTask .checkButton", function(){
-		if($(this).parent().data("checked") == true){
-			$(this).css("opacity", "0.2").parent().data("checked",false).end().siblings(".optTrigger , .subHolder").show();
-		} else {
-			$(this).css("opacity", "1.0").parent().data("checked",true).end().siblings(".optTrigger , .subHolder").hide();
+		if($(this).parent().data("checked") == true){ //to uncheck
+			$(this).css("opacity", "0.2")
+				.siblings(".optTrigger , .subHolder").show()
+				.parent().data("checked",false);				
+			
+			$(this).parent().fadeOut(300, function(){ // unchecking effect
+					$(this).parent().siblings().prepend($(this));											
+			}).fadeIn(100);
+					
+		} else { // to check
+			$(this).css("opacity", "1.0")
+				.siblings(".optTrigger , .subHolder")
+					.hide()
+					.parent()
+						.data("checked",true)
+						.fadeOut(300, function(){  // checking effect
+							$(this).appendTo($(this).parent().siblings()).show();
+						});		
 		}
-		
 	});
 	
 	$("#tasksWrapper").on('click' , '.subTaskAdd .cancelSub', function(){
@@ -115,18 +127,18 @@ $(function(){
 				}
 			});
 			$(this).siblings(".subTaskInput").focus();
-			Util.showError("Sub Task already exists!")					
+			Util.showError("Sub Task already exists!");					
 			return false;				
 		}
 		SubUtil.add($(this));
-		if($(this).parent().siblings(".subTaskWrapper").children().length == 1){
+		if($(this).parent().siblings(".subTaskWrapper").find(".remainingSub").children().length == 1){
 			$(this).parent().siblings(".subTaskWrapper").show();
 		}			
 		$(this).parent().fadeOut(100);
 		$(this).siblings(".subTaskInput").val("");
 					
 	});
-	// TODO : move completed sub task to the bottom
+	
 	// TODO : when main task is checked, auto complete all sub tasks
 	// TODO : when sub task in completed main task in un checked, move that main task to remaining
 	
@@ -135,8 +147,7 @@ $(function(){
 		currentTask.prependTo($("#tasksWrapper"));
 		Util.calcTaskInfo(true);
 		currentTask.find(".dateInfo").text("Added " + MainUtil.mainTaskInfo[$(this).siblings(".mainTaskLabel").text()].date);
-		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();		
-		$(this).css('opacity','0.2');
+		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();				
 	});	
 	
 })
