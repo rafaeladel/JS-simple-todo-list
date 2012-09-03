@@ -67,7 +67,7 @@ var MainUtil = {
 		if(MTCategory == ""){
 			MTCategory = "uncategorized";
 		}
-		MTContents.attr('data-cat', MTCategory);
+		MTContents.data('cat', MTCategory);
 		if($.inArray(MTCategory,this.totalTasksInfo.tasksCat) == -1){
 			this.totalTasksInfo.tasksCat.push(MTCategory);
 			$("#categories ul").append("<li>" + MTCategory +"</li>");
@@ -77,32 +77,49 @@ var MainUtil = {
 		//setting priority marker color
 		if(MTPriority == 2){ 
 			this.totalTasksInfo.tasksPriority["urgent"]++;			
-			MTContents.attr('data-priority', 'urgent').find(".mainMarker").css("background-color", "red");
+			MTContents.data('priority', 'urgent').find(".mainMarker").css("background-color", "red");
 		} else if(MTPriority == 1){
 			this.totalTasksInfo.tasksPriority["normal"]++;
-			MTContents.attr('data-priority', 'normal').find(".mainMarker").css("background-color", "black");
+			MTContents.data('priority', 'normal').find(".mainMarker").css("background-color", "black");
 		} else if(MTPriority == 0){
 			this.totalTasksInfo.tasksPriority["low"]++;
-			MTContents.attr('data-priority', 'low').find(".mainMarker").css("background-color", "blue");
+			MTContents.data('priority', 'low').find(".mainMarker").css("background-color", "blue");
 		}		
 		
 		this.setTaskInfo(MTLabel, MTCategory, MTPriority, Util.getCurrentTime(true));
 		
 		MTContents.find(".mainTaskWrapper .dateInfo").text("Added: " + this.mainTaskInfo[MTLabel].date);		
 		$("#tasksWrapper").prepend(MTContents);
-		this.initialize(MTContents);		
-		MTContents.slideDown(100);			
-	},
-	initialize : function(el){
-		el.hide();		
+		this.initialize(MTContents);
 		$("#tasksWrapper").sortable({
 			axis: "y",			
 			revert:"true",
 			tolerance: "pointer",			
 			handle: ".mainHolder",
 			opacity : 0.7,
-			containment: "#tasksWrapper"
-		});	
+			containment: "#tasksWrapper",
+			start : function(event, ui){
+				$("#tasksWrapper").find(".subTaskWrapper").each(function(){
+					if($(this).is(":visible")){
+						$(this).data("sortTriggered",true).slideUp(100);
+					} else {
+						$(this).data("sortTriggered",false);
+					}
+				});
+			},
+			stop : function(event, ui){
+				$("#tasksWrapper").find(".subTaskWrapper").each(function(){
+					if((!$(this).is(":visible")) && ($(this).data("sortTriggered") == true)){
+						$(this).slideDown(100);
+					}
+				});
+			}
+		});			
+		MTContents.slideDown(100);			
+	},
+	initialize : function(el){
+		el.hide();		
+		
 	
 		el.find(".prioritySubSlider").slider({
 			min: 0,
