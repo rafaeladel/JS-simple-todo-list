@@ -54,7 +54,10 @@ var MainUtil = {
 									<button class="addSub">Done</button>\
 									<button class="cancelSub">Cancel</button>\
 								</div>\
-								<div class="subTaskWrapper clearfix"></div>\
+								<div class="subTaskWrapper clearfix">\
+									<div class="remainingSub"></div>\
+									<div class="completedSub"></div>\
+								</div>\
 							</div>');
 							
 							
