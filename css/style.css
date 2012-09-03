@@ -421,6 +421,7 @@ div.mainHolder , div.subHolder{
  div#errorMSG { 
 	display:none;	
 	position:absolute;
+	z-index:2;
 	left: 40%;
 	right:40%;
 	background: darkslategray;
