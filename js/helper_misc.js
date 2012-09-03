@@ -3,18 +3,18 @@ var Util = {
 		$("#errorMSG #closeMSG").click(function(){
 			$("#errorMSG").stop().fadeOut(100);			
 		});
-		$("#errorMSG").find("p").text(msg).end().slideDown(200).delay(3000).slideUp(100);		
+		$("#errorMSG").find("p").text(msg).end().stop().slideDown(200).delay(3000).slideUp(100);		
 	},
 	calcTaskInfo : function(update){
 		var urgentCount = 0 , normalCount = 0, lowCount = 0;
 		if(update == true){
 			$("#tasksWrapper .wholeTask").each(function(){
 				var currentTask = $(this);
-				if(currentTask.attr("data-priority") == "urgent"){
+				if(currentTask.data("priority") == "urgent"){
 					urgentCount++;
-				}else if(currentTask.attr("data-priority") == "normal"){
+				}else if(currentTask.data("priority") == "normal"){
 					normalCount++;
-				}else if(currentTask.attr("data-priority") == "low"){
+				}else if(currentTask.data("priority") == "low"){
 					lowCount++;
 				}
 			});
