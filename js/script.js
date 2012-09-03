@@ -52,7 +52,7 @@ $(function(){
 					$(".wholeTask").each(function(){
 						if(currentTag.is(":first-child")){
 							$(this).show();
-						}else if ($(this).attr("data-cat") != currentTag.text()){
+						}else if ($(this).data("cat") != currentTag.text()){
 							$(this).hide();
 						} else {
 							$(this).show();
@@ -85,6 +85,14 @@ $(function(){
 			$(this).css('opacity','1.0');
 		} else if($(this).hasClass('addSubButton')){
 			$(this).parent().siblings('.subTaskAdd').slideDown(100).find(".subTaskInput").focus();		
+		}		
+	});
+	
+	$("#tasksWrapper").on("click", ".subTask .checkButton", function(){
+		if($(this).parent().data("checked") == true){
+			$(this).css("opacity", "0.2").parent().data("checked",false).end().siblings(".optTrigger , .subHolder").show();
+		} else {
+			$(this).css("opacity", "1.0").parent().data("checked",true).end().siblings(".optTrigger , .subHolder").hide();
 		}
 		
 	});
@@ -106,6 +114,7 @@ $(function(){
 					$(this).effect('highlight' , {} , 1000);
 				}
 			});
+			$(this).siblings(".subTaskInput").focus();
 			Util.showError("Sub Task already exists!")					
 			return false;				
 		}
@@ -117,7 +126,9 @@ $(function(){
 		$(this).siblings(".subTaskInput").val("");
 					
 	});
-	
+	// TODO : move completed sub task to the bottom
+	// TODO : when main task is checked, auto complete all sub tasks
+	// TODO : when sub task in completed main task in un checked, move that main task to remaining
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
 		var currentTask = $(this).parent().parent();
@@ -126,7 +137,8 @@ $(function(){
 		currentTask.find(".dateInfo").text("Added " + MainUtil.mainTaskInfo[$(this).siblings(".mainTaskLabel").text()].date);
 		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();		
 		$(this).css('opacity','0.2');
-	});
+	});	
+	
 })
 
 
