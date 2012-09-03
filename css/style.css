@@ -246,6 +246,7 @@ div.dateInfo {
 }
 
 div.checkButton {
+	opacity: 0.8;
     background: url('../img/check_checked.png') no-repeat center;	
 }
 
@@ -351,8 +352,16 @@ div.mainHolder , div.subHolder{
     margin-left:25px;
     border-radius: 0px 0px 5px 5px;
     border: 1px solid lightgrey;
-    border-top:none;
-    
+    border-top:none;    
+}
+
+.subTaskWrapper .completedSub {
+	background:#B0B0B0;
+	opacity: 0.4;
+}
+
+.subTaskWrapper .completedSub .subTask {
+	border: none;
 }
 
 .subTask {
@@ -416,6 +425,10 @@ div.mainHolder , div.subHolder{
 
 .subOptions{
     display:none;
+}
+
+#completedTasks div.checkButton{
+	opacity:1.0;
 }
 
  div#errorMSG { 
