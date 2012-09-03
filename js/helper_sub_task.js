@@ -32,14 +32,14 @@ var SubUtil = {
 		el.parent().siblings(".mainTaskWrapper").find(".subTrigger").show();
 		
 		STContents.hide();
-		el.parent().siblings(".subTaskWrapper").prepend(STContents);
+		el.parent().siblings(".subTaskWrapper").find(".remainingSub").prepend(STContents);
 
-		$(".subTaskWrapper").sortable({
+		$(".remainingSub").sortable({
 			axis: "y",			
 			tolerance: "pointer",			
 			handle: ".subHolder",
 			opacity : 0.7,
-			containment: STContents.parent(),		
+			containment: STContents.parent()				
 		});
 		
 		STContents.slideDown(100);
