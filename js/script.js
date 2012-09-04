@@ -77,37 +77,25 @@ $(function(){
 	
 	$("#tasksWrapper").on('click', '.mainTaskWrapper .checkButton , .addSubButton' , function(){
 		if($(this).hasClass('checkButton')){
+			$(this).parent().siblings(".subTaskWrapper").find(".remainingSub").children().each(function(){
+				$(this).find(".checkButton").trigger("click");
+			});
 			var currentTask = $(this).parent().parent();
 			currentTask.prependTo($("#completedTasks"));
 			Util.calcTaskInfo(true);
 			currentTask.find(".dateInfo").text("Completed " + Util.getCurrentTime(true));
-			currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();			
+			currentTask.find($(".optTrigger , .addSubButton, .holder")).hide();						
 		} else if($(this).hasClass('addSubButton')){
 			$(this).parent().siblings('.subTaskAdd').slideDown(100).find(".subTaskInput").focus();		
 		}		
 	});
 	
-	$("#tasksWrapper").on("click", ".subTask .checkButton", function(){
-		if($(this).parent().data("checked") == true){ //to uncheck
-			$(this).css("opacity", "0.2")
-				.siblings(".optTrigger , .subHolder").show()
-				.parent().data("checked",false);				
-			
-			$(this).parent().fadeOut(300, function(){ // unchecking effect
-					$(this).parent().siblings().prepend($(this));											
-			}).fadeIn(100);
-					
-		} else { // to check
-			$(this).css("opacity", "1.0")
-				.siblings(".optTrigger , .subHolder")
-					.hide()
-					.parent()
-						.data("checked",true)
-						.fadeOut(300, function(){  // checking effect
-							$(this).appendTo($(this).parent().siblings()).show();
-						});		
-		}
+	//sub tasks checking and unchecking	
+	$("#tasksWrapper").on("click",".remainingSub .checkButton, .completedSub .checkButton", function(evt){
+		var test = Util.clickOnCheck(evt);		
 	});
+	
+	
 	
 	$("#tasksWrapper").on('click' , '.subTaskAdd .cancelSub', function(){
 		$(this).parent().slideUp(100);
@@ -139,7 +127,6 @@ $(function(){
 					
 	});
 	
-	// TODO : when main task is checked, auto complete all sub tasks
 	// TODO : when sub task in completed main task in un checked, move that main task to remaining
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
@@ -147,8 +134,14 @@ $(function(){
 		currentTask.prependTo($("#tasksWrapper"));
 		Util.calcTaskInfo(true);
 		currentTask.find(".dateInfo").text("Added " + MainUtil.mainTaskInfo[$(this).siblings(".mainTaskLabel").text()].date);
-		currentTask.find($(".optTrigger , .addSubButton, .holder")).show();				
-	});	
+		currentTask.find($(".mainTaskWrapper .optTrigger ,.mainTaskWrapper .addSubButton, .mainHolder")).show();				
+	});
+
+	$("#completedTasks").on("click", ".remainingSub .checkButton, .completedSub .checkButton", function(evt){
+		Util.clickOnCheck(evt);	
+		
+		$(this).parents().eq(2).siblings(".mainTaskWrapper").find(".checkButton").trigger("click");
+	});
 	
 })
 
