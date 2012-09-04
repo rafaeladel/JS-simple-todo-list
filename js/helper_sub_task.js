@@ -35,7 +35,7 @@ var SubUtil = {
 		el.parent().siblings(".subTaskWrapper").find(".remainingSub").prepend(STContents);
 
 		$(".remainingSub").sortable({
-			axis: "y",			
+			axis: "y",		
 			tolerance: "pointer",			
 			handle: ".subHolder",
 			opacity : 0.7,
