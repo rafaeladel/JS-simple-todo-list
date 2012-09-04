@@ -47,5 +47,24 @@ var Util = {
 		} else {
 			return now.getTime();
 		}
+	},
+	clickOnCheck : function(evt){
+		var targetDiv =""
+		if($(evt.target).parent().hasClass("remainingSub")){
+			targetDiv = ".completedSub";
+		} else if($(evt.target).parent().hasClass("completedSub")){
+			targetDiv = ".remainingSub";
+		}
+
+		$(evt.target).parent()
+				.fadeOut(200)
+					.parent()
+						.siblings(targetDiv)
+						.prepend($(evt.target).parent())
+						.end()
+					.end()
+				.find(".optTrigger, .subHolder").toggle()
+				.end()
+			.fadeIn(100);
 	}
 }
