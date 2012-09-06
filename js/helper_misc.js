@@ -66,5 +66,19 @@ var Util = {
 				.find(".optTrigger, .subHolder").toggle()
 				.end()
 			.fadeIn(100);
+	},
+	bindMenu : function(evt, section){
+		var menuRank = "",
+			menuAccomb = "";
+		switch(section){
+			case "main" : menuRank = ".mainOptions"; menuAccomb = ".subOptions"; break;
+			case "sub" : menuRank = ".subOptions"; menuAccomb = ".mainOptions"; break;
+		}
+		$(menuRank).not($(evt.target).siblings(menuRank)).hide();
+		$(".optTrigger").not($(evt.target)).removeClass("active");
+		$(menuAccomb).hide();
+		$(evt.target).siblings(menuRank).toggle();
+		$(evt.target).toggleClass("active");
+		evt.stopPropagation();
 	}
 }
