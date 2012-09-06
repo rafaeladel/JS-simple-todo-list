@@ -127,7 +127,20 @@ $(function(){
 					
 	});
 	
-	// TODO : when sub task in completed main task in un checked, move that main task to remaining
+	$("#tasksWrapper").on("mousedown", ".mainTaskWrapper .optTrigger", function(evt){		
+		Util.bindMenu(evt,"main");
+	});
+
+	$("#tasksWrapper").on("mousedown", ".remainingSub .subTask .optTrigger", function(evt){
+		Util.bindMenu(evt,"sub");
+	});
+
+	$("html").on("mousedown",function(evt){
+		if($(evt.target).parent().parent().hasClass("mainOptions") || $(evt.target).parent().parent().hasClass("subOptions")) return false;
+		$(".optTrigger").siblings(".mainOptions").hide();
+		$(".optTrigger").siblings(".subOptions").hide();
+		$(".optTrigger").removeClass("active");
+	});
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
 		var currentTask = $(this).parent().parent();
