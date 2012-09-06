@@ -365,6 +365,7 @@ div.mainHolder , div.subHolder{
 }
 
 .subTask {
+	position:relative;
     border-bottom: 1px dotted lightgray;
     color:darkslategray;
     padding: 7px;
@@ -390,14 +391,20 @@ div.mainHolder , div.subHolder{
     border: none;
 }
 
-.mainOptions , .subOptions {
+.mainOptions, .subOptions{
     display:none;	
+	z-index: 2;
     position:absolute;
     background : darkslategrey;
-    left : 626px;
+    right : 55px;
     top:25px;
     border-radius: 5px 0px 5px 5px;
 }
+
+ .subOptions {
+	top : 24px;
+	right: 57px;
+ }
 
 .mainOptions li , .subOptions li {
     color : lightgrey;
