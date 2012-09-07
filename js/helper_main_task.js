@@ -7,7 +7,7 @@ var MainUtil = {
 			"normal" : 0,
 			"low" : 0
 		},
-		tasksCat : {}
+		tasksCat : { "all" : 0 }
 	},
 	mainCatArr : [],
 	setTaskInfo : function(name, category, priority, date){
