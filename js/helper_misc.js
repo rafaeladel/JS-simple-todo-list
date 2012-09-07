@@ -5,9 +5,9 @@ var Util = {
 		});
 		$("#errorMSG").find("p").text(msg).end().stop().slideDown(200).delay(3000).slideUp(100);		
 	},
-	calcTaskInfo : function(update){
-		var urgentCount = 0 , normalCount = 0, lowCount = 0;
-		if(update == true){
+	calcTaskInfo : function(updatePrio, updateCat){		
+		if(updatePrio == true){
+			var urgentCount = 0 , normalCount = 0, lowCount = 0;
 			$("#tasksWrapper .wholeTask").each(function(){
 				var currentTask = $(this);
 				if(currentTask.data("priority") == "urgent"){
@@ -24,6 +24,15 @@ var Util = {
 		}
 		$("#mainTaskInfo").text("All:"+ $("#tasksWrapper .wholeTask").length + " [ Urgent:" + MainUtil.totalTasksInfo.tasksPriority["urgent"] + " | Normal:"+ MainUtil.totalTasksInfo.tasksPriority["normal"] + " | Low:" + MainUtil.totalTasksInfo.tasksPriority["low"] + " ]");
 		$("#completedTaskInfo").text("All:" + $("#completedTasks .wholeTask").length);
+		
+		if(updateCat == true) {
+			$.each(MainUtil.totalTasksInfo.tasksCat, function(index,value){
+				if(value < 1){
+					$("#categories li:contains('"+index+"')").remove();
+					delete MainUtil.totalTasksInfo.tasksCat[index];
+				}
+			});
+		}
 	},
 	getCurrentTime : function(format){
 		var now = new Date(),			
