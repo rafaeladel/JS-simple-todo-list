@@ -1,4 +1,5 @@
 $(function(){
+	Object.defineProperty(MainUtil.totalTasksInfo.tasksCat, "all" , { value:0, writable:true, enumerable:false});	
 	//mainTask Addition animation
 	$("#mainNext, #mainTaskInput").on('click keypress', function(evt){
 		if(evt.type == "click" || evt.type =="keypress"){
@@ -124,7 +125,6 @@ $(function(){
 		}			
 		$(this).parent().fadeOut(100);
 		$(this).siblings(".subTaskInput").val("");
-					
 	});
 	
 	$("#tasksWrapper").on("mousedown", ".mainTaskWrapper .optTrigger", function(evt){		
@@ -140,6 +140,14 @@ $(function(){
 		$(".optTrigger").siblings(".mainOptions").hide();
 		$(".optTrigger").siblings(".subOptions").hide();
 		$(".optTrigger").removeClass("active");
+	});
+	
+	$("#tasksWrapper").on("click", ".mainTaskWrapper .mainDelete", function(){
+		MainUtil.deleteMain($(this).parents().eq(3));
+	});
+	
+	$("#tasksWrapper").on("click", ".subTask .subDelete", function(){
+		SubUtil.deleteSub($(this).parents().eq(2));
 	});
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
