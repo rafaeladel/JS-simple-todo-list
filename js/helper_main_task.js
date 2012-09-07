@@ -7,8 +7,9 @@ var MainUtil = {
 			"normal" : 0,
 			"low" : 0
 		},
-		tasksCat : ["all"]
+		tasksCat : {}
 	},
+	mainCatArr : [],
 	setTaskInfo : function(name, category, priority, date){
 		switch(priority){
 			case 0: priority = "low"; break;
@@ -39,9 +40,9 @@ var MainUtil = {
 									<div class="dateInfo"></div>\
 									<div class="mainOptions">\
 										<ul>\
-											<li id="mainInfo">Details</li>\
-											<li id="mainEdit">Edit</li>\
-											<li id="mainDelete">Delete</li>\
+											<li class="mainInfo">Details</li>\
+											<li class="mainEdit">Edit</li>\
+											<li class="mainDelete">Delete</li>\
 										</ul>\
 									</div>\
 								</div>\
@@ -70,12 +71,16 @@ var MainUtil = {
 		if(MTCategory == ""){
 			MTCategory = "uncategorized";
 		}
-		MTContents.data('cat', MTCategory);
-		if($.inArray(MTCategory,this.totalTasksInfo.tasksCat) == -1){
-			this.totalTasksInfo.tasksCat.push(MTCategory);
+		MTContents.data('cat', MTCategory);		
+		if(this.totalTasksInfo.tasksCat.hasOwnProperty(MTCategory)){
+			++this.totalTasksInfo.tasksCat[MTCategory];						
+		} else {
 			$("#categories ul").append("<li>" + MTCategory +"</li>");
-		}
-		$("#mainCatInput").autocomplete("option", "source",this.totalTasksInfo.tasksCat);
+			this.totalTasksInfo.tasksCat[MTCategory] = 1;
+			++this.totalTasksInfo.tasksCat["all"];
+			this.mainCatArr = $.map(MainUtil.totalTasksInfo.tasksCat, function(value, index){return index;});
+		}		
+		$("#mainCatInput").autocomplete("option", "source",this.mainCatArr);
 		
 		//setting priority marker color
 		if(MTPriority == 2){ 
@@ -121,9 +126,7 @@ var MainUtil = {
 		MTContents.slideDown(100);			
 	},
 	initialize : function(el){
-		el.hide();		
-		
-	
+		el.hide();
 		el.find(".prioritySubSlider").slider({
 			min: 0,
 			max: 2,
@@ -143,5 +146,22 @@ var MainUtil = {
 				}
 			}
 		});
+	}, 
+	deleteMain : function(task){
+		var taskLabel = task.find(".mainTaskLabel").text(),
+			taskPrio = this.mainTaskInfo[task.find(".mainTaskLabel").text()].priority,
+			taskCat = this.mainTaskInfo[task.find(".mainTaskLabel").text()].category,
+			taskIndex = $.inArray(taskLabel, this.totalTasksInfo.tasksNames);
+		
+		this.totalTasksInfo.tasksNames.splice(taskIndex, 1);
+		switch(taskPrio){
+			case "low":	--this.totalTasksInfo.tasksPriority["low"];
+			case "normal": --this.totalTasksInfo.tasksPriority["normal"];
+			case "urgent": --this.totalTasksInfo.tasksPriority["urgent"];
+		}
+		--this.totalTasksInfo.tasksCat[taskCat];
+		delete this.mainTaskInfo[taskLabel];		
+		task.remove();
+		Util.calcTaskInfo(true, true);
 	}
 };

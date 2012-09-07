@@ -9,9 +9,9 @@ var SubUtil = {
 								<div class="subHolder"></div>\
 								<div class="subOptions">\
 									<ul>\
-										<li id="subInfo">Details</li>\
-										<li id="subEdit">Edit</li>\
-										<li id="subDelete">Delete</li>\
+										<li class="subInfo">Details</li>\
+										<li class="subEdit">Edit</li>\
+										<li class="subDelete">Delete</li>\
 									</ul>\
 								</div>\
 								<div class="checkButton"></div>\
@@ -43,5 +43,14 @@ var SubUtil = {
 		});
 		
 		STContents.slideDown(100);
+	},
+	deleteSub : function(task){
+		var taskName = task.find(".subTaskLabel").text(),
+			parentTask = task.parent().parent().siblings(".mainTaskWrapper").find(".mainTaskLabel").text(),
+			taskIndex = $.inArray(taskName, MainUtil.mainTaskInfo[parentTask].subTasks);
+		MainUtil.mainTaskInfo[parentTask].subTasks.splice(taskIndex,1);
+		console.log(MainUtil.mainTaskInfo[parentTask].subTasks);
+		
+		task.remove();		
 	}
 }
