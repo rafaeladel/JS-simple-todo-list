@@ -28,10 +28,10 @@ $(function(){
 			$(this).parent().siblings(".subTaskWrapper").slideUp(100);
 			$(this).removeClass("opened");
 		}
-	});
+	});	
 	
 	$("#mainCatInput").autocomplete({
-		source: MainUtil.totalTasksInfo.tasksCat,
+		source: MainUtil.mainCatArr,
 		autoFocus: true
 	});		
 	
