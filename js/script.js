@@ -1,5 +1,4 @@
 $(function(){
-	Object.defineProperty(MainUtil.totalTasksInfo.tasksCat, "all" , { value:0, writable:true, enumerable:false});	
 	//mainTask Addition animation
 	$("#mainNext, #mainTaskInput").on('click keypress', function(evt){
 		if(evt.type == "click" || evt.type =="keypress"){
@@ -40,6 +39,11 @@ $(function(){
 
 	$("#addMain, #mainCatInput").on('click keypress', function(evt){		
 		if((evt.type =="click" && evt.target.id == "addMain") || (evt.which == 13 && evt.target.id=="mainCatInput")){	
+			if($("#mainCatInput").val() == "all"){
+				Util.showError("Specify a category.");
+				$("#mainCatInput").effect('highlight', {}, 3000);
+				return false;
+			};
 			MainUtil.add();					
 			$(this).parent().fadeOut(100, function(){
 				$(this).siblings().fadeIn(100).find("input").val("").focus();
