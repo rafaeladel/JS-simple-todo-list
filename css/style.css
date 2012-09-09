@@ -280,6 +280,78 @@ div.mainHolder , div.subHolder{
     margin-top: -3px;
 }
 
+.mainEditDialogue {
+	width:750px;
+	padding: 2px;
+}
+
+.mainEditDialogue .mainPrioEdit , .mainEditDialogue .mainPrioEditSlider , .mainEditDialogue p {
+	display : inline-block;
+}
+
+.mainEditDialogue .mainInputEdit, .mainEditDialogue .taskCatEdit , .subEditDialogue input {
+	font-size: 15px;
+	font-family : arial;
+	padding: 5px;
+	border:1px solid gray;
+	border-radius:5px;
+	margin-right: 5px;
+}
+
+.mainEditDialogue {
+	display:none;
+    border-bottom: 1px dotted lightgray;
+	padding: 5px;
+	overflow:auto;
+}
+
+.mainInputEdit {
+	width : 250px;
+}
+
+.mainEditDialogue > * , .subEditDialogue > * {
+	float:left;
+}
+
+.taskCatEdit {
+	width: 180px;
+}
+
+.mainEditDialogue .mainPrioEdit, .subEditDialogue .subPrioEdit {	
+	height:27px;
+	width :150px;
+	border-radius:5px;
+	margin-right: 8px;
+	border: 1px solid gray;
+}
+
+.mainPrioEditSlider , .subPrioEditSlider{
+	float:left;
+	background:red;
+	height:22px;
+	width:60px;
+	margin: 9px 15px 0px 10px;
+}
+
+.mainPrioEdit p , .subPrioEdit p {
+	font-size:  15px;
+	margin-top: 3px;
+	float:left;
+}
+
+.mainEditDialogue button , .subEditDialogue button {	
+	border: none;
+	background: gray;
+	color : white;
+	border-radius:5px;
+	padding:4px;
+	width:60px;
+	font-family:arial;
+	font-size: 13px !important;
+	margin: 2px 3px 0px 0px;
+	cursor:pointer;
+}
+
 .subTaskAdd {
 	display:none;	
     position: absolute;
@@ -391,9 +463,41 @@ div.mainHolder , div.subHolder{
     border: none;
 }
 
+.subEditDialogue {
+	display:none;
+	border-bottom: 1px dotted lightgray;
+	height :30px;
+	padding:2px;
+}
+
+.subEditDialogue * {
+	display:inline-block;
+}
+
+.subEditDialogue input {
+	font-size: 13px !important;	
+	padding: 3px;
+	height: 17px !important;
+	margin-top: 2px;
+	width: 397px;
+}
+
+.subPrioEdit{
+	margin-top : 2px;
+	height : 23px !important;
+}
+
+.subPrioEdit p {
+	font-size : 14px;
+}
+
+.subEditDialogue button {
+	float : right;
+}
+
 .mainOptions, .subOptions{
     display:none;	
-	z-index: 2;
+	z-index: 5;
     position:absolute;
     background : darkslategrey;
     right : 55px;
