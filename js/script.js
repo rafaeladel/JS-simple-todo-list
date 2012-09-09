@@ -11,22 +11,22 @@ $(function(){
 				}
 				
 				//if task already exists
-				var MTLabel = $("#mainTaskInput").val();
-				if($.inArray(MTLabel, MainUtil.totalTasksInfo.tasksNames) != -1){			
-					$(".wholeTask").each(function(){
-						var taskLabel = $(this).find(".mainTaskLabel").text();
-						if(taskLabel == MTLabel){
-							$(this).effect('highlight', {}, 3000);
-						}				
-					});			
-					Util.showError("Task already exists!");			
-					return false;
-				} else {			
-					//if everything is ok 
-					$(this).parent().fadeOut(100, function(){
-						$(this).siblings().fadeIn(100).find("input").val("").focus();
-					});	
-				}
+				var MTLabel = $("#mainTaskInput").val(),
+					getOut = false ;
+				$(".wholeTask").each(function(){
+					if(MTLabel == $(this).find(".mainTaskLabel").text()){
+						$(this).effect('highlight', {}, 3000);					
+						Util.showError("Task already exists.");
+						getOut = true;
+						return false;
+					}
+				});
+				if(getOut) return false;
+				
+				$(this).parent().fadeOut(100, function(){
+					$(this).siblings().fadeIn(100).find("input").val("").focus();
+				});	
+				
 			}
 		}
 	});
@@ -48,26 +48,8 @@ $(function(){
 			$(this).parent().fadeOut(100, function(){
 				$(this).siblings().fadeIn(100).find("input").val("").focus();
 			});
-			
-			//Setting Tags functionality 
-			$("#categories li").each(function(){
-				var currentTag = $(this);						
-				$(this).on('click' , function(){
-					var oldTag = $("#categories li.selected");	
-					$(".wholeTask").each(function(){
-						if(currentTag.is(":first-child")){
-							$(this).show();
-						}else if ($(this).data("cat") != currentTag.text()){
-							$(this).hide();
-						} else {
-							$(this).show();
-						}
-					});
-					oldTag.removeClass("selected");
-					currentTag.addClass("selected");
-				});
-			});	
-			Util.calcTaskInfo(false);				
+			//alert(JSON.stringify(MainUtil.totalTasksInfo.tasksCat));
+			Util.calcTaskInfo(true,true);				
 		}
 		
 	});
@@ -150,8 +132,42 @@ $(function(){
 		MainUtil.deleteMain($(this).parents().eq(3));
 	});
 	
+	$("#tasksWrapper").on("click", ".mainTaskWrapper .mainEdit", function(){
+		$(this).parents().eq(2).fadeOut(50, function(){
+			$(this).siblings(".mainEditDialogue").fadeIn(50);
+		});
+		MainUtil.configEditMain($(this).parents().eq(2));
+	});
+	
+	$("#tasksWrapper").on("click", ".mainEditDialogue .mainSaveEdit", function(){
+		MainUtil.editMain($(this).parent());		
+	});
+	
+	$("#tasksWrapper").on("click", ".mainEditDialogue .mainCancelEdit", function(){
+		$(this).parent().fadeOut(50, function(){
+			$(this).siblings(".mainTaskWrapper").fadeIn(50);
+		});
+	});
+	
+	$("#tasksWrapper").on("click", ".subTask .subEdit", function(){
+		$(this).parents().eq(2).fadeOut(50 , function(){
+			$(this).siblings(".subEditDialogue").fadeIn(50);
+		});
+		SubUtil.configEditSub($(this).parents().eq(2));
+	});
+	
+	$("#tasksWrapper").on("click", ".subEditDialogue .subSaveEdit",function(){
+		SubUtil.editSub($(this).parent());
+	});
+	
+	$("#tasksWrapper").on("click", ".subEditDialogue .subCancelEdit" , function(){
+		$(this).parent().fadeOut(50 , function(){
+			$(this).siblings(".subTask").fadeIn(50);
+		});
+	});
+	
 	$("#tasksWrapper").on("click", ".subTask .subDelete", function(){
-		SubUtil.deleteSub($(this).parents().eq(2));
+		SubUtil.deleteSub($(this).parents().eq(3));		
 	});
 	
 	$("#completedTasks").on('click', '.mainTaskWrapper .checkButton',function(){
