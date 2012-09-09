@@ -25,13 +25,34 @@ var Util = {
 		$("#mainTaskInfo").text("All:"+ $("#tasksWrapper .wholeTask").length + " [ Urgent:" + MainUtil.totalTasksInfo.tasksPriority["urgent"] + " | Normal:"+ MainUtil.totalTasksInfo.tasksPriority["normal"] + " | Low:" + MainUtil.totalTasksInfo.tasksPriority["low"] + " ]");
 		$("#completedTaskInfo").text("All:" + $("#completedTasks .wholeTask").length);
 		
-		if(updateCat == true) {
-			$.each(MainUtil.totalTasksInfo.tasksCat, function(index,value){
+		if(updateCat == true) {			
+			$.each(MainUtil.totalTasksInfo.tasksCat, function(index,value){				
 				if(value < 1){
-					$("#categories li:contains('"+index+"')").remove();
+					$("#categories li").filter(function(){
+						return $(this).text() == index;
+					}).remove();
+					--MainUtil.totalTasksInfo.tasksCat["all"];
 					delete MainUtil.totalTasksInfo.tasksCat[index];
 				}
 			});
+			
+			$("#categories li").each(function(){
+				var currentTag = $(this);						
+				$(this).on('click' , function(){
+					var oldTag = $("#categories li.selected");	
+					$(".wholeTask").each(function(){
+						if(currentTag.is(":first-child")){
+							$(this).show();
+						}else if ($(this).data("cat") != currentTag.text()){
+							$(this).hide();
+						} else {
+							$(this).show();
+						}
+					});
+					oldTag.removeClass("selected");
+					currentTag.addClass("selected");
+				});
+			});	
 		}
 	},
 	getCurrentTime : function(format){
