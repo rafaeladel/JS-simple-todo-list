@@ -40,11 +40,20 @@ var MainUtil = {
 									<div class="dateInfo"></div>\
 									<div class="mainOptions">\
 										<ul>\
-											<li class="mainInfo">Details</li>\
 											<li class="mainEdit">Edit</li>\
 											<li class="mainDelete">Delete</li>\
 										</ul>\
 									</div>\
+								</div>\
+								<div class="mainEditDialogue">\
+									<input type="text" class="mainInputEdit">\
+									<input type="text" class="taskCatEdit">\
+									<div class="mainPrioEdit">\
+										<div class="mainPrioEditSlider"></div>\
+										<p>test</p>\
+									</div>\
+									<button class="mainSaveEdit">Save</button>\
+									<button class="mainCancelEdit">Cancel</button>\
 								</div>\
 								<div class="subTaskAdd">\
 									<input type="text" name="subTask" class="subTaskInput" placemainHolder="Enter a new sub task">\
@@ -71,34 +80,36 @@ var MainUtil = {
 		if(MTCategory == ""){
 			MTCategory = "uncategorized";
 		}
-		MTContents.data('cat', MTCategory);		
-		if(this.totalTasksInfo.tasksCat.hasOwnProperty(MTCategory)){
-			++this.totalTasksInfo.tasksCat[MTCategory];						
+		MTContents.data('cat', MTCategory);
+
+		//here
+		if(MainUtil.totalTasksInfo.tasksCat.hasOwnProperty(MTCategory)){
+			++MainUtil.totalTasksInfo.tasksCat[MTCategory];						
 		} else {
 			$("#categories ul").append("<li>" + MTCategory +"</li>");
-			this.totalTasksInfo.tasksCat[MTCategory] = 1;
-			++this.totalTasksInfo.tasksCat["all"];
-			this.mainCatArr = $.map(MainUtil.totalTasksInfo.tasksCat, function(value, index){return index;});
-		}		
-		$("#mainCatInput").autocomplete("option", "source",this.mainCatArr);
+			MainUtil.totalTasksInfo.tasksCat[MTCategory] = 1;
+			++MainUtil.totalTasksInfo.tasksCat["all"];
+			MainUtil.mainCatArr = $.map(MainUtil.totalTasksInfo.tasksCat, function(value, index){return index;});			
+		}	
 		
 		//setting priority marker color
 		if(MTPriority == 2){ 
-			this.totalTasksInfo.tasksPriority["urgent"]++;			
 			MTContents.data('priority', 'urgent').find(".mainMarker").css("background-color", "red");
 		} else if(MTPriority == 1){
-			this.totalTasksInfo.tasksPriority["normal"]++;
 			MTContents.data('priority', 'normal').find(".mainMarker").css("background-color", "black");
 		} else if(MTPriority == 0){
-			this.totalTasksInfo.tasksPriority["low"]++;
 			MTContents.data('priority', 'low').find(".mainMarker").css("background-color", "blue");
 		}		
 		
-		this.setTaskInfo(MTLabel, MTCategory, MTPriority, Util.getCurrentTime(true));
-		
+		this.setTaskInfo(MTLabel, MTCategory, MTPriority, Util.getCurrentTime(true));		
 		MTContents.find(".mainTaskWrapper .dateInfo").text("Added: " + this.mainTaskInfo[MTLabel].date);		
+		
 		$("#tasksWrapper").prepend(MTContents);
-		this.initialize(MTContents);
+		this.initialize(MTContents);	
+		
+		Util.calcTaskInfo(true, true);		
+		$("#mainCatInput").autocomplete("option", "source",this.mainCatArr);
+		
 		$("#tasksWrapper").sortable({
 			axis: "y",			
 			revert:"true",
@@ -122,7 +133,31 @@ var MainUtil = {
 					}
 				});
 			}
-		});			
+		});	
+		$(".mainPrioEditSlider").slider({
+			min: 0,
+			max: 2,
+			step:1,		
+			orientation:"horizontal",			
+			change : function(event, ui){
+				if(ui.value == 0){
+					$(this).siblings().text("Low").css("color","blue");
+				} else if(ui.value == 1){
+					$(this).siblings().text("Medium").css("color","black");
+				} else if(ui.value == 2){
+					$(this).siblings().text("Urgent").css("color","red");
+				}
+			},
+			slide : function(event, ui){
+				if(ui.value == 0){
+					$(this).siblings().text("Low").css("color","blue");
+				} else if(ui.value == 1){
+					$(this).siblings().text("Medium").css("color","black");
+				} else if(ui.value == 2){
+					$(this).siblings().text("Urgent").css("color","red");
+				}
+			}
+		});
 		MTContents.slideDown(100);			
 	},
 	initialize : function(el){
@@ -147,10 +182,89 @@ var MainUtil = {
 			}
 		});
 	}, 
+	configEditMain : function(task){
+		var taskLabel = task.find(".mainTaskLabel").text(),
+			taskCat = this.mainTaskInfo[taskLabel].category,
+			taskPrio = this.mainTaskInfo[taskLabel].priority,
+			taskPrioVal = "";
+			taskEdit = task.siblings(".mainEditDialogue");
+			
+		switch(taskPrio){
+			case "urgent" : taskPrioVal = 2; break;
+			case "normal" :taskPrioVal = 1; break;
+			case "low" : taskPrioVal = 0; break;
+		}		
+		taskEdit.find(".mainPrioEditSlider").slider("value", taskPrioVal);
+		taskEdit.find(".mainInputEdit").val(taskLabel);
+		taskEdit.find(".taskCatEdit").val(taskCat);
+	},
+	editMain : function(dialogue){
+		var newLabel = dialogue.find(".mainInputEdit").val(),
+			newCat = dialogue.find(".taskCatEdit").val(),
+			newPrio = dialogue.find(".mainPrioEditSlider").slider("value"),
+			targetTask = dialogue.siblings(".mainTaskWrapper"),
+			oldTaskLabel = targetTask.find(".mainTaskLabel").text(),
+			oldCat = this.mainTaskInfo[oldTaskLabel].category,
+			oldPrio = this.mainTaskInfo[oldTaskLabel].priority;	
+		
+		var getOut = false;
+		$(".wholeTask").each(function(){
+			if(newLabel == $(this).find(".mainTaskLabel").text() 
+				&& (dialogue[0] != $(this).find(".mainEditDialogue")[0] && newCat == $(this).data("cat"))){
+				$(this).effect('highlight', {}, 3000);					
+				Util.showError("Task already exists.");
+				getOut = true;
+				return false;
+			}
+		});
+		
+		if(getOut) return false;
+		
+		//editing label
+		this.totalTasksInfo.tasksNames.splice($.inArray(this.totalTasksInfo.tasksNames),1,newLabel);
+		targetTask.find(".mainTaskLabel").text(newLabel);
+		
+		//editing priority
+		if(newPrio == 2){
+			targetTask.parent().data("priority", "urgent").end()
+					.find(".mainMarker").css("backgroundColor","red");			
+		} else if(newPrio == 1){
+			targetTask.parent().data("priority", "normal").end()
+					.find(".mainMarker").css("backgroundColor","black");
+		} else if(newPrio == 0){
+			targetTask.parent().data("priority", "low").end()
+					.find(".mainMarker").css("backgroundColor","blue");
+		}
+		
+		if(newCat==""){
+			newCat = "uncategorized";
+		}
+		targetTask.parent().data("cat", newCat);
+		--this.totalTasksInfo.tasksCat[oldCat];
+		
+		//here
+		if(MainUtil.totalTasksInfo.tasksCat.hasOwnProperty(newCat)){
+			++MainUtil.totalTasksInfo.tasksCat[newCat];						
+		} else {			
+			$("#categories ul").append("<li>" + newCat +"</li>");
+			MainUtil.totalTasksInfo.tasksCat[newCat] = 1;
+			++MainUtil.totalTasksInfo.tasksCat["all"];
+			MainUtil.mainCatArr = $.map(MainUtil.totalTasksInfo.tasksCat, function(value, index){return index;});			
+		}
+			//alert(JSON.stringify(MainUtil.totalTasksInfo.tasksCat));
+		Util.calcTaskInfo(true, true);
+		targetTask.find(".dateInfo").text("Edited: " + Util.getCurrentTime(true));
+		
+		delete this.mainTaskInfo[oldTaskLabel];
+		this.setTaskInfo(newLabel, newCat, targetTask.parent().data("priority"), Util.getCurrentTime(true));
+		dialogue.fadeOut(50, function(){
+			$(this).siblings(".mainTaskWrapper").fadeIn(50);
+		});
+	},
 	deleteMain : function(task){
 		var taskLabel = task.find(".mainTaskLabel").text(),
-			taskPrio = this.mainTaskInfo[task.find(".mainTaskLabel").text()].priority,
-			taskCat = this.mainTaskInfo[task.find(".mainTaskLabel").text()].category,
+			taskPrio = this.mainTaskInfo[taskLabel].priority,
+			taskCat = this.mainTaskInfo[taskLabel].category,
 			taskIndex = $.inArray(taskLabel, this.totalTasksInfo.tasksNames);
 		
 		this.totalTasksInfo.tasksNames.splice(taskIndex, 1);
@@ -158,10 +272,11 @@ var MainUtil = {
 			case "low":	--this.totalTasksInfo.tasksPriority["low"];
 			case "normal": --this.totalTasksInfo.tasksPriority["normal"];
 			case "urgent": --this.totalTasksInfo.tasksPriority["urgent"];
-		}
+		}		
 		--this.totalTasksInfo.tasksCat[taskCat];
-		delete this.mainTaskInfo[taskLabel];		
+		delete this.mainTaskInfo[taskLabel];
+		Util.calcTaskInfo(true, true);		
 		task.remove();
-		Util.calcTaskInfo(true, true);
+		//alert(JSON.stringify(MainUtil.totalTasksInfo.tasksCat));		
 	}
 };
